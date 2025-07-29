@@ -89,6 +89,16 @@ export default function Header({
               style={{ width: 22, height: 22, resizeMode: 'contain' }}
             />
           </TouchableOpacity>
+        ) : name == 'Home' && lastIcon ? (
+          <TouchableOpacity
+            style={{ padding: 5 }}
+            onPress={() => navigation.navigate('Welcome')}
+          >
+            <Image
+              source={require('../../assets/icons/logout.png')}
+              style={{ width: 22, height: 22, resizeMode: 'contain' }}
+            />
+          </TouchableOpacity>
         ) : null}
         {/* <Text>Last</Text> */}
       </View>

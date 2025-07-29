@@ -19,6 +19,12 @@ import CreditCards from '../Screens/ExtraScreen/CreditCards';
 import AddCard from '../Screens/ExtraScreen/AddCard';
 import Transactions from '../Screens/ExtraScreen/Transactions';
 import Notifications from '../Screens/ExtraScreen/Notification';
+import CreateAccountRider from '../Screens/Rider/CreateAccountRider';
+import LoginRider from '../Screens/Rider/LoginRider';
+import VerifyNumberRider from '../Screens/Rider/VerifyNumberRider';
+import ConfirmCodeRider from '../Screens/Rider/ConfirmCodeRider';
+import HomeRider from '../Screens/Rider/HomeRider';
+import MapRider from '../Screens/Rider/MapRider';
 const Stack = createStackNavigator();
 export default function Root() {
   return (
@@ -42,6 +48,15 @@ export default function Root() {
         <Stack.Screen name="AddCard" component={AddCard} />
         <Stack.Screen name="Transactions" component={Transactions} />
         <Stack.Screen name="Notifications" component={Notifications} />
+        <Stack.Screen
+          name="CreateAccountRider"
+          component={CreateAccountRider}
+        />
+        <Stack.Screen name="LoginRider" component={LoginRider} />
+        <Stack.Screen name="VerifyNumberRider" component={VerifyNumberRider} />
+        <Stack.Screen name="ConfirmCodeRider" component={ConfirmCodeRider} />
+        <Stack.Screen name="HomeRider" component={HomeRider} />
+        <Stack.Screen name="MapRider" component={MapRider} />
       </Stack.Navigator>
     </NavigationContainer>
   );

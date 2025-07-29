@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { colors, fonts, images } from './constant';
 // import Header from './components/Header';
+import Cycle from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -127,6 +128,83 @@ export default function Welcome() {
                 }}
               >
                 Create an account
+              </Text>
+            </View>
+            {/* <LinearGradient
+              colors={['#AEDC81', '#6CC51D']}
+              locations={[0.01, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.gradient}
+            >
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <EvilIcons
+                  name="user"
+                  size={35}
+                  color="#fff"
+                  style={{ marginRight: 20 }}
+                />
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontFamily: fonts.medium,
+                    marginLeft: 20,
+                    color: 'white',
+                  }}
+                >
+                  Create an account
+                </Text>
+              </View>
+            </LinearGradient> */}
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('CreateAccountRider')}
+            style={{
+              borderRadius: 10,
+              // overflow: 'hidden',
+              elevation: 4, // Android shadow
+              shadowColor: '#000', // iOS shadow
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.2,
+              shadowRadius: 4,
+              backgroundColor: 'green',
+              alignItems: 'center',
+              height: 60,
+              marginHorizontal: 15,
+              marginTop: 15,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                // backgroundColor: 'red',
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <Cycle
+                name="bicycle-sharp"
+                size={35}
+                color="#fff"
+                style={{ marginRight: 20 }}
+              />
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontFamily: fonts.medium,
+                  marginLeft: 20,
+                  color: 'white',
+                }}
+              >
+                Switch to rider
               </Text>
             </View>
             {/* <LinearGradient

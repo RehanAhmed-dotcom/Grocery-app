@@ -4,7 +4,7 @@ import { LinearGradient } from 'react-native-linear-gradient';
 import { fonts } from '../Constant';
 // import { fonts } from '../constant';
 
-const CreditCard = ({ cardNumber, unmask, cardHolder, expiryDate }) => {
+const BalanceCard = ({ cardNumber, unmask, cardHolder, expiryDate }) => {
   const maskedCard = unmask
     ? cardNumber
     : ` XXXX  XXXX  XXXX  ${cardNumber.slice(-4)}`;
@@ -13,11 +13,11 @@ const CreditCard = ({ cardNumber, unmask, cardHolder, expiryDate }) => {
     <ImageBackground
       style={styles.card}
       resizeMode="contain"
-      source={require('../../assets/cardbg.png')}
+      source={require('../../assets/balanceCard.png')}
     >
       <View>
         <Text style={styles.cardNumber}>{maskedCard}</Text>
-        <Text style={styles.cardHolder}>{cardHolder}</Text>
+        <Text style={[styles.cardHolder, {}]}>{cardHolder}</Text>
         <Text style={styles.cardExpire}>{expiryDate}</Text>
       </View>
     </ImageBackground>
@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
     fontFamily: fonts.semibold,
   },
   cardHolder: {
-    fontSize: 15,
+    fontSize: 20,
     letterSpacing: 2,
     color: '#fff',
     textAlign: 'left',
     position: 'absolute',
-    top: 145,
+    top: 140,
     left: 5,
     fontFamily: fonts.medium,
   },
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreditCard;
+export default BalanceCard;
