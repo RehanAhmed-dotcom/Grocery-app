@@ -25,6 +25,12 @@ import VerifyNumberRider from '../Screens/Rider/VerifyNumberRider';
 import ConfirmCodeRider from '../Screens/Rider/ConfirmCodeRider';
 import HomeRider from '../Screens/Rider/HomeRider';
 import MapRider from '../Screens/Rider/MapRider';
+import ProfileRider from '../Screens/Rider/ProfileRider';
+import ConfirmCodeForgot from '../Screens/Auth/ConfirmCodeForgot';
+import ForgotRider from '../Screens/Rider/ForgotRider';
+import ConfirmCodeForgotRider from '../Screens/Rider/ConfirmCodeForgotRider';
+import ChangePassword from '../Screens/Auth/ChangePassword';
+import ChangePasswordRider from '../Screens/Rider/ChangePasswordRider';
 const Stack = createStackNavigator();
 export default function Root() {
   return (
@@ -33,6 +39,7 @@ export default function Root() {
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="ConfirmCodeForgot" component={ConfirmCodeForgot} />
         <Stack.Screen name="Forgot" component={Forgot} />
         <Stack.Screen name="VerifyNumber" component={VerifyNumber} />
         <Stack.Screen name="ConfirmCode" component={ConfirmCode} />
@@ -57,6 +64,17 @@ export default function Root() {
         <Stack.Screen name="ConfirmCodeRider" component={ConfirmCodeRider} />
         <Stack.Screen name="HomeRider" component={HomeRider} />
         <Stack.Screen name="MapRider" component={MapRider} />
+        <Stack.Screen name="ProfileRider" component={ProfileRider} />
+        <Stack.Screen name="ForgotRider" component={ForgotRider} />
+        <Stack.Screen
+          name="ConfirmCodeForgotRider"
+          component={ConfirmCodeForgotRider}
+        />
+        <Stack.Screen name="ChangePassword" component={ChangePassword} />
+        <Stack.Screen
+          name="ChangePasswordRider"
+          component={ChangePasswordRider}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

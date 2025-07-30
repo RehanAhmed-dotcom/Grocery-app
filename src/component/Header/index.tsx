@@ -40,7 +40,19 @@ export default function Header({
       }}
     >
       <View style={{ width: 50, alignItems: 'center' }}>
-        {firstIcon ? (
+        {firstIcon && name == 'Home' ? (
+          <TouchableOpacity onPress={() => navigation.navigate('ProfileRider')}>
+            <Image
+              source={require('../../assets/user.png')}
+              style={{
+                height: 50,
+                borderRadius: 25,
+                marginLeft: 20,
+                width: 50,
+              }}
+            />
+          </TouchableOpacity>
+        ) : firstIcon ? (
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons
               name="arrow-back"
@@ -63,7 +75,7 @@ export default function Header({
       </View>
       <View style={{ width: 50, alignItems: 'center' }}>
         {name === 'My Orders' && lastIcon ? (
-          <TouchableOpacity onPress={() => Alert.alert('Kaam Chal rha ha')}>
+          <TouchableOpacity onPress={() => Alert.alert('In Progress')}>
             <Image
               source={require('../../assets/icons/setting.png')}
               style={{ width: 22, height: 22 }}
@@ -89,17 +101,18 @@ export default function Header({
               style={{ width: 22, height: 22, resizeMode: 'contain' }}
             />
           </TouchableOpacity>
-        ) : name == 'Home' && lastIcon ? (
-          <TouchableOpacity
-            style={{ padding: 5 }}
-            onPress={() => navigation.navigate('Welcome')}
-          >
-            <Image
-              source={require('../../assets/icons/logout.png')}
-              style={{ width: 22, height: 22, resizeMode: 'contain' }}
-            />
-          </TouchableOpacity>
-        ) : null}
+        ) : // name == 'Home' && lastIcon ? (
+        //   <TouchableOpacity
+        //     style={{ padding: 5 }}
+        //     onPress={() => navigation.navigate('Welcome')}
+        //   >
+        //     <Image
+        //       source={require('../../assets/icons/logout.png')}
+        //       style={{ width: 22, height: 22, resizeMode: 'contain' }}
+        //     />
+        //   </TouchableOpacity>
+        // )
+        null}
         {/* <Text>Last</Text> */}
       </View>
     </View>

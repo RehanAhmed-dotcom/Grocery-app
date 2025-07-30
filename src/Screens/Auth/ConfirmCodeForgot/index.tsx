@@ -16,7 +16,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Header from '../../../component/Header';
 import { colors, fonts } from '../../../component/Constant';
 
-export default function ConfirmCodeRider() {
+export default function ConfirmCodeForgot() {
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
 
@@ -50,7 +50,7 @@ export default function ConfirmCodeRider() {
     if (code.length < 6) {
       Alert.alert('Error', 'Please enter complete 6-digit OTP');
     } else {
-      navigation.navigate('HomeRider');
+      navigation.navigate('ChangePassword');
     }
   };
 

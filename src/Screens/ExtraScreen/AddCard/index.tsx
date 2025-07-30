@@ -186,7 +186,7 @@ export default function AddCard() {
           }}
         >
           <TouchableOpacity
-            onPress={() => Alert.alert('Kaam chal rha ha')}
+            onPress={() => Alert.alert('In Progress')}
             style={{
               borderRadius: 10,
               overflow: 'hidden',

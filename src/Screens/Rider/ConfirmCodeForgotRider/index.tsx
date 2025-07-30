@@ -16,7 +16,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Header from '../../../component/Header';
 import { colors, fonts } from '../../../component/Constant';
 
-export default function ConfirmCodeRider() {
+export default function ConfirmCodeForgotRider() {
   const navigation = useNavigation();
   const { bottom } = useSafeAreaInsets();
 
@@ -50,7 +50,7 @@ export default function ConfirmCodeRider() {
     if (code.length < 6) {
       Alert.alert('Error', 'Please enter complete 6-digit OTP');
     } else {
-      navigation.navigate('HomeRider');
+      navigation.navigate('ChangePasswordRider');
     }
   };
 
@@ -91,12 +91,12 @@ export default function ConfirmCodeRider() {
 
       <TouchableOpacity onPress={handleSubmit} style={styles.buttonWrapper}>
         {/* <LinearGradient
-            colors={['#AEDC81', '#6CC51D']}
-            locations={[0.01, 1]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.gradient}
-          > */}
+              colors={['#AEDC81', '#6CC51D']}
+              locations={[0.01, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.gradient}
+            > */}
         <Text style={styles.buttonText}>Next</Text>
         {/* </LinearGradient> */}
       </TouchableOpacity>

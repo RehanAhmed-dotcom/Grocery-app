@@ -178,9 +178,9 @@ export default function LoginRider() {
                     Remember Me
                   </Text>
                 </View>
-                {/* <View>
+                <View>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Forgot')}
+                    onPress={() => navigation.navigate('ForgotRider')}
                   >
                     <Text
                       style={{
@@ -192,14 +192,14 @@ export default function LoginRider() {
                       Forgot Password?
                     </Text>
                   </TouchableOpacity>
-                </View> */}
+                </View>
               </View>
               <TouchableOpacity
                 onPress={() => navigation.navigate('HomeRider')}
                 style={{
                   borderRadius: 10,
                   overflow: 'hidden',
-                  backgroundColor: 'green',
+                  backgroundColor: colors.primaryColor,
                   elevation: 4, // Android shadow
                   alignItems: 'center',
                   justifyContent: 'center',

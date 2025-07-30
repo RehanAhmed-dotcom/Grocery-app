@@ -47,7 +47,7 @@ export default function HomeRider() {
       <StatusBar barStyle="dark-content" />
       <Header
         // firstIcon={true}
-
+        firstIcon={true}
         name="Home"
         lastIcon={true}
         navigation={navigation}
@@ -58,7 +58,7 @@ export default function HomeRider() {
           <BalanceCard
             unmask={true}
             cardNumber="Available Balance"
-            cardHolder="$ 550"
+            cardHolder="$550"
             // expiryDate="02/30"
           />
           <ScrollView style={{ flex: 1 }}>
@@ -140,7 +140,7 @@ export default function HomeRider() {
                         color: 'black',
                       }}
                     >
-                      Address: Shop no 18 I8 markaz Islamabad
+                      Address: Shop no 15 I8 markaz Islamabad
                     </Text>
                   </View>
                 </View>
@@ -190,7 +190,10 @@ export default function HomeRider() {
               onChangeText={text => console.log(text)}
             /> */}
             </TouchableOpacity>
-            <View style={styles.inputcontainer}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MapRider')}
+              style={styles.inputcontainer}
+            >
               <View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Text
@@ -255,7 +258,7 @@ export default function HomeRider() {
                         color: 'black',
                       }}
                     >
-                      Address: Shop no 18 I8 markaz Islamabad
+                      Address: Shop no 12 I8 markaz Islamabad
                     </Text>
                   </View>
                 </View>
@@ -304,8 +307,11 @@ export default function HomeRider() {
               placeholder="Name"
               onChangeText={text => console.log(text)}
             /> */}
-            </View>
-            <View style={styles.inputcontainer}>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MapRider')}
+              style={styles.inputcontainer}
+            >
               <View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Text
@@ -370,7 +376,7 @@ export default function HomeRider() {
                         color: 'black',
                       }}
                     >
-                      Address: Shop no 18 I8 markaz Islamabad
+                      Address: Shop no 06 I8 markaz Islamabad
                     </Text>
                   </View>
                 </View>
@@ -419,7 +425,7 @@ export default function HomeRider() {
               placeholder="Name"
               onChangeText={text => console.log(text)}
             /> */}
-            </View>
+            </TouchableOpacity>
           </ScrollView>
         </View>
       </View>

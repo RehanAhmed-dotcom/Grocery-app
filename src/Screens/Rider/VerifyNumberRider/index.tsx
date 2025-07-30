@@ -111,7 +111,7 @@ export default function VerifyNumberRider() {
           borderRadius: 10,
           overflow: 'hidden',
           height: 60,
-          backgroundColor: colors.green,
+          backgroundColor: colors.primaryColor,
           elevation: 4, // Android shadow
           shadowColor: '#000', // iOS shadow
           shadowOffset: { width: 0, height: 2 },

@@ -7,36 +7,31 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 // import Header from './components/Header';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { fonts, colors } from './constant';
+import Lock from 'react-native-vector-icons/AntDesign';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import LinearGradient from 'react-native-linear-gradient';
-import PhoneInput from 'react-native-phone-number-input';
-import Header from '../../../component/Header';
 import { colors, fonts } from '../../../component/Constant';
+import Header from '../../../component/Header';
 
-export default function VerifyNumber() {
+export default function ChangePassword() {
   const navigation = useNavigation();
-  const { bottom } = useSafeAreaInsets();
-  const [value, setValue] = useState('');
-  const [formattedValue, setFormattedValue] = useState('');
-  console.log('formattedValue', formattedValue);
-  console.log('Value', value);
-  const phoneInput = useRef<PhoneInput>(null);
-  const validatePhoneNumber = () => {
-    const checkValid = phoneInput.current?.isValidNumber(value);
+  const { top, bottom } = useSafeAreaInsets();
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const submitForm = () => {
+    // Submit the form or navigate
+    navigation.navigate('Login');
 
-    if (!value) {
-      Alert.alert('Error', 'Please enter your phone number.');
-    } else if (!checkValid) {
-      Alert.alert('Invalid Number', 'Please enter a valid phone number.');
-    } else {
-      Alert.alert('Success', `Phone number is valid:\n${formattedValue}`);
-      navigation.navigate('ConfirmCode');
-    }
+    setTimeout(() => {
+      setError('');
+    }, 3000);
   };
+
   return (
     <View
       style={{
@@ -48,7 +43,7 @@ export default function VerifyNumber() {
       <Header
         firstIcon={true}
         navigation={navigation}
-        name="Verify Number"
+        name="Password Recovery"
         lastIcon={false}
         textColor="black"
       />
@@ -63,7 +58,7 @@ export default function VerifyNumber() {
             textAlign: 'center',
           }}
         >
-          Verify your number
+          Change Password
         </Text>
         <Text
           style={{
@@ -79,57 +74,51 @@ export default function VerifyNumber() {
         </Text>
       </View>
       <View style={styles.inputcontainer}>
-        <PhoneInput
-          ref={phoneInput}
-          defaultValue={value}
-          defaultCode="US"
-          layout="second" // or "second"
-          onChangeText={text => {
-            setValue(text);
-          }}
-          onChangeFormattedText={text => {
-            setFormattedValue(text);
-          }}
-          withDarkTheme={true} // optional
-          containerStyle={{ backgroundColor: 'transparent' }}
-          textContainerStyle={{
-            paddingVertical: 0,
-            backgroundColor: 'transparent',
-            paddingHorizontal: 0,
-          }}
-          flagButtonStyle={{
-            backgroundColor: 'transparent',
-            marginHorizontal: 0,
-          }}
-          countryPickerButtonStyle={{ height: 50 }}
-          textInputProps={{ placeholder: 'Enter phone number' }}
+        <Lock name="lock" size={22} color={colors.grey} />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Password"
+          keyboardType="email-address"
+          onChangeText={text => setEmail(text)}
+          autoCapitalize="none"
         />
       </View>
+      <View style={styles.inputcontainer}>
+        <Lock name="lock" size={22} color={colors.grey} />
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm Password"
+          keyboardType="email-address"
+          onChangeText={text => setEmail(text)}
+          autoCapitalize="none"
+        />
+      </View>
+
       <TouchableOpacity
-        onPress={() => validatePhoneNumber()}
+        onPress={() => submitForm()}
         style={{
           borderRadius: 10,
           overflow: 'hidden',
-          height: 60,
-          backgroundColor: colors.primaryColor,
           elevation: 4, // Android shadow
           shadowColor: '#000', // iOS shadow
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.2,
+          height: 60,
           alignItems: 'center',
           justifyContent: 'center',
+          backgroundColor: colors.primaryColor,
           shadowRadius: 4,
           marginHorizontal: 15,
           marginTop: 15,
         }}
       >
         {/* <LinearGradient
-          colors={['#AEDC81', '#6CC51D']}
-          locations={[0.01, 1]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={styles.gradient}
-        > */}
+            colors={['#AEDC81', '#6CC51D']}
+            locations={[0.01, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={styles.gradient}
+          > */}
         <Text
           style={{
             fontSize: 20,
@@ -137,7 +126,7 @@ export default function VerifyNumber() {
             color: 'white',
           }}
         >
-          Next
+          Change Password
         </Text>
         {/* </LinearGradient> */}
       </TouchableOpacity>
@@ -150,6 +139,8 @@ const styles = StyleSheet.create({
     fontFamily: fonts.regular,
     color: 'black',
     flex: 1,
+
+    marginLeft: 10,
   },
   inputcontainer: {
     width: '90%',
@@ -162,13 +153,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingHorizontal: 15,
   },
 
   gradient: {
     paddingVertical: 14,
     paddingHorizontal: 20,
     borderRadius: 10,
-    height: 60,
     justifyContent: 'center',
     alignItems: 'center',
   },

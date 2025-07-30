@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     elevation: 4,
     shadowColor: '#000',
-    backgroundColor: colors.green,
+    backgroundColor: colors.primaryColor,
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',

@@ -168,7 +168,7 @@ export default function CreateAccountRider() {
                   height: 60,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: colors.green,
+                  backgroundColor: colors.primaryColor,
                   marginHorizontal: 15,
                   marginTop: 15,
                 }}

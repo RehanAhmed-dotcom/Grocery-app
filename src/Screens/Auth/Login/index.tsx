@@ -199,7 +199,7 @@ export default function Login() {
                 style={{
                   borderRadius: 10,
                   overflow: 'hidden',
-                  backgroundColor: 'green',
+                  backgroundColor: colors.primaryColor,
                   elevation: 4, // Android shadow
                   alignItems: 'center',
                   justifyContent: 'center',

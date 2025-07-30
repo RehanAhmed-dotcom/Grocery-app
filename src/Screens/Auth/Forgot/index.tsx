@@ -30,10 +30,7 @@ export default function Forgot() {
     } else {
       setError('');
       // Submit the form or navigate
-      Alert.alert(
-        'Info',
-        'We’ve sent a password reset link to your email address.',
-      );
+      navigation.navigate('ConfirmCodeForgot');
     }
     setTimeout(() => {
       setError('');
@@ -105,28 +102,32 @@ export default function Forgot() {
           shadowColor: '#000', // iOS shadow
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.2,
+          height: 60,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: colors.primaryColor,
           shadowRadius: 4,
           marginHorizontal: 15,
           marginTop: 15,
         }}
       >
-        <LinearGradient
+        {/* <LinearGradient
           colors={['#AEDC81', '#6CC51D']}
           locations={[0.01, 1]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.gradient}
+        > */}
+        <Text
+          style={{
+            fontSize: 20,
+            fontFamily: fonts.medium,
+            color: 'white',
+          }}
         >
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: fonts.medium,
-              color: 'white',
-            }}
-          >
-            Send Link
-          </Text>
-        </LinearGradient>
+          Send Link
+        </Text>
+        {/* </LinearGradient> */}
       </TouchableOpacity>
     </View>
   );
