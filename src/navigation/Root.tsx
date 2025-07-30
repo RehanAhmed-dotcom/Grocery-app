@@ -31,7 +31,8 @@ import ForgotRider from '../Screens/Rider/ForgotRider';
 import ConfirmCodeForgotRider from '../Screens/Rider/ConfirmCodeForgotRider';
 import ChangePassword from '../Screens/Auth/ChangePassword';
 import ChangePasswordRider from '../Screens/Rider/ChangePasswordRider';
-const Stack = createStackNavigator();
+import { RootStackParamList } from './types';
+const Stack = createStackNavigator<RootStackParamList>();
 export default function Root() {
   return (
     <NavigationContainer>

@@ -16,9 +16,16 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import LinearGradient from 'react-native-linear-gradient';
 import { colors, fonts } from '../../../component/Constant';
 import Header from '../../../component/Header';
-
+import type { StackNavigationProp } from '@react-navigation/stack';
+// import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types';
+import { RootStackParamList } from '../../../navigation/types';
+// import type { StackNavigationProp } from '@react-navigation/stack';
 export default function Forgot() {
-  const navigation = useNavigation();
+  type NavigationProp = StackNavigationProp<
+    RootStackParamList,
+    'ConfirmCodeForgot'
+  >;
+  const navigation = useNavigation<NavigationProp>();
   const { top, bottom } = useSafeAreaInsets();
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');

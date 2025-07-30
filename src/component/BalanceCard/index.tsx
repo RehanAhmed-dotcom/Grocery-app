@@ -3,8 +3,18 @@ import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native';
 import { LinearGradient } from 'react-native-linear-gradient';
 import { fonts } from '../Constant';
 // import { fonts } from '../constant';
-
-const BalanceCard = ({ cardNumber, unmask, cardHolder, expiryDate }) => {
+interface BalanceCard {
+  cardNumber: string;
+  unmask: boolean;
+  cardHolder: string;
+  expiryDate: string;
+}
+const BalanceCard: React.FC<BalanceCard> = ({
+  cardNumber,
+  unmask,
+  cardHolder,
+  expiryDate,
+}) => {
   const maskedCard = unmask
     ? cardNumber
     : ` XXXX  XXXX  XXXX  ${cardNumber.slice(-4)}`;

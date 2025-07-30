@@ -12,7 +12,7 @@ import {
   Keyboard,
   Switch,
 } from 'react-native';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, RefObject } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { colors, fonts, images } from './constant';
 // import Header from './components/Header';
@@ -23,22 +23,24 @@ import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { colors, fonts, images } from '../../../component/Constant';
 import Header from '../../../component/Header';
+import type { StackNavigationProp } from '@react-navigation/stack';
+import type { RootStackParamList } from '../../../navigation/types';
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const { top, bottom } = useSafeAreaInsets();
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const scrollViewRef = useRef(null);
   const emailInputRef = useRef(null);
   const phoneInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 
-  const scrollToInput = inputRef => {
+  const scrollToInput = (inputRef: RefObject<TextInput>) => {
     inputRef.current.measureLayout(
       scrollViewRef.current,
-      (x, y) => {
+      (x: number, y: number) => {
         scrollViewRef.current.scrollTo({ y: y - 50, animated: true });
       },
-      error => console.log('Error measuring layout:', error),
+      (error: unknown) => console.log('Error measuring layout:', error),
     );
   };
   const [keyboardStatus, setKeyboardStatus] = useState(false);
@@ -78,7 +80,7 @@ export default function Login() {
               ? 'padding'
               : keyboardStatus === true
               ? 'height'
-              : 'undefined'
+              : undefined
           }
           keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
         >
@@ -195,7 +197,9 @@ export default function Login() {
                 </View>
               </View>
               <TouchableOpacity
-                onPress={() => navigation.navigate('BottomNav')}
+                onPress={() =>
+                  navigation.navigate('BottomNav', { screen: 'Home' })
+                }
                 style={{
                   borderRadius: 10,
                   overflow: 'hidden',
