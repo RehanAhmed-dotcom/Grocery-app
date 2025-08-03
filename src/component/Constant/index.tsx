@@ -15,6 +15,7 @@ const colors = {
   grey: '#868889',
   green: 'green',
   primaryColor: '#AEDC81',
+  red: 'red',
 };
 const products = [
   {

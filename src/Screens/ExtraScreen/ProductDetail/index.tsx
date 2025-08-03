@@ -3,6 +3,7 @@ import {
   Dimensions,
   Image,
   ImageBackground,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -81,202 +82,204 @@ export default function ProductDetail() {
         // lastIcon={false}
         textColor="black"
       />
-      <Image
-        source={product.image}
-        style={{ width: '100%', height: 400, resizeMode: 'contain' }}
-      />
-      <View
-        style={{
-          backgroundColor: '#F4F5F9',
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
-          flex: 1,
-        }}
-      >
+      <ScrollView>
+        <Image
+          source={product.image}
+          style={{ width: '100%', height: 400, resizeMode: 'contain' }}
+        />
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginHorizontal: 15,
-            marginTop: 10,
+            backgroundColor: '#F4F5F9',
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            flex: 1,
           }}
         >
-          <View>
-            <Text
-              style={{
-                fontSize: 18,
-                fontFamily: fonts.semibold,
-                color: '#28B446',
-              }}
-            >
-              ${product.price.toFixed(2)}
-            </Text>
-          </View>
-          <TouchableOpacity onPress={() => Alert.alert('dasd')} style={{}}>
-            {product.islike == 1 ? (
-              <FontAwesome name="heart" size={20} color="red" />
-            ) : (
-              <FontAwesome name="heart-o" size={20} color={colors.grey} />
-            )}
-          </TouchableOpacity>
-        </View>
-        <View style={{ marginHorizontal: 15, marginVertical: 10 }}>
-          <Text
-            style={{
-              color: '#000',
-              fontSize: 25,
-              fontFamily: fonts.semibold,
-              marginBottom: 1,
-            }}
-          >
-            {product.name}
-          </Text>
-          <Text
-            style={{
-              fontSize: 14,
-              fontFamily: fonts.semibold,
-              color: '#868889',
-              marginBottom: 8,
-            }}
-          >
-            {product.quantity}
-          </Text>
-          <View style={{ flexDirection: 'row', marginBottom: 8 }}>
-            <Text style={{ fontFamily: fonts.bold }}>{product.rating}</Text>
-            <View style={{ flexDirection: 'row', marginHorizontal: 5 }}>
-              {renderStars(product.rating)}
-            </View>
-            <Text style={{ fontFamily: fonts.regular, color: colors.grey }}>
-              (89 reviews)
-            </Text>
-          </View>
-          <Text
-            style={{
-              fontSize: 14,
-              fontFamily: fonts.regular,
-              color: colors.grey,
-              marginBottom: 8,
-            }}
-          >
-            {product.description}
-          </Text>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              backgroundColor: 'white',
               alignItems: 'center',
-              paddingHorizontal: 10,
-              borderRadius: 10,
-              marginVertical: 10,
+              marginHorizontal: 15,
+              marginTop: 10,
             }}
           >
-            <Text style={{ fontFamily: fonts.bold, color: colors.grey }}>
-              Quantity
-            </Text>
-            <View
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}
-            >
-              <TouchableOpacity
-                onPress={() => decreaseQuantity()}
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderRadius: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Feather name="minus" size={20} color="#6CC51D" />
-              </TouchableOpacity>
-              <View
-                style={{ width: 1, height: 50, backgroundColor: '#EBEBEB' }}
-              ></View>
+            <View>
               <Text
                 style={{
-                  fontFamily: fonts.bold,
-                  marginHorizontal: 10,
+                  fontSize: 18,
+                  fontFamily: fonts.semibold,
+                  color: '#28B446',
                 }}
               >
-                {quantity}
+                ${product.price.toFixed(2)}
+              </Text>
+            </View>
+            <TouchableOpacity onPress={() => Alert.alert('dasd')} style={{}}>
+              {product.islike == 1 ? (
+                <FontAwesome name="heart" size={20} color="red" />
+              ) : (
+                <FontAwesome name="heart-o" size={20} color={colors.grey} />
+              )}
+            </TouchableOpacity>
+          </View>
+          <View style={{ marginHorizontal: 15, marginVertical: 10 }}>
+            <Text
+              style={{
+                color: '#000',
+                fontSize: 25,
+                fontFamily: fonts.semibold,
+                marginBottom: 1,
+              }}
+            >
+              {product.name}
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                fontFamily: fonts.semibold,
+                color: '#868889',
+                marginBottom: 8,
+              }}
+            >
+              {product.quantity}
+            </Text>
+            <View style={{ flexDirection: 'row', marginBottom: 8 }}>
+              <Text style={{ fontFamily: fonts.bold }}>{product.rating}</Text>
+              <View style={{ flexDirection: 'row', marginHorizontal: 5 }}>
+                {renderStars(product.rating)}
+              </View>
+              <Text style={{ fontFamily: fonts.regular, color: colors.grey }}>
+                (89 reviews)
+              </Text>
+            </View>
+            <Text
+              style={{
+                fontSize: 14,
+                fontFamily: fonts.regular,
+                color: colors.grey,
+                marginBottom: 8,
+              }}
+            >
+              {product.description}
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                backgroundColor: 'white',
+                alignItems: 'center',
+                paddingHorizontal: 10,
+                borderRadius: 10,
+                marginVertical: 10,
+              }}
+            >
+              <Text style={{ fontFamily: fonts.bold, color: colors.grey }}>
+                Quantity
               </Text>
               <View
-                style={{ width: 1, height: 50, backgroundColor: '#EBEBEB' }}
-              ></View>
-              <TouchableOpacity
-                onPress={() => increaseQuantity()}
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderRadius: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}
               >
-                <Feather name="plus" size={20} color="#6CC51D" />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => decreaseQuantity()}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Feather name="minus" size={20} color="#6CC51D" />
+                </TouchableOpacity>
+                <View
+                  style={{ width: 1, height: 50, backgroundColor: '#EBEBEB' }}
+                ></View>
+                <Text
+                  style={{
+                    fontFamily: fonts.bold,
+                    marginHorizontal: 10,
+                  }}
+                >
+                  {quantity}
+                </Text>
+                <View
+                  style={{ width: 1, height: 50, backgroundColor: '#EBEBEB' }}
+                ></View>
+                <TouchableOpacity
+                  onPress={() => increaseQuantity()}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Feather name="plus" size={20} color="#6CC51D" />
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-          <TouchableOpacity
-            onPress={() => Alert.alert('Kamm kar rhy hain sbr kro')}
-            style={{
-              borderRadius: 10,
-              overflow: 'hidden',
-              backgroundColor: colors.primaryColor,
-              height: 60,
-              alignItems: 'center',
-              justifyContent: 'center',
+            <TouchableOpacity
+              onPress={() => Alert.alert('Kamm kar rhy hain sbr kro')}
+              style={{
+                borderRadius: 10,
+                overflow: 'hidden',
+                backgroundColor: colors.primaryColor,
+                height: 60,
+                alignItems: 'center',
+                justifyContent: 'center',
 
-              elevation: 4, // Android shadow
-              shadowColor: '#000', // iOS shadow
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.2,
-              shadowRadius: 4,
-              marginTop: 15,
-            }}
-          >
-            {/* <LinearGradient
+                elevation: 4, // Android shadow
+                shadowColor: '#000', // iOS shadow
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+                marginTop: 15,
+              }}
+            >
+              {/* <LinearGradient
               colors={['#AEDC81', '#6CC51D']}
               locations={[0.01, 1]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={styles.gradient}
             > */}
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'row',
-                //   backgroundColor: 'red',
-                width: '100%',
-              }}
-            >
-              <Text
+              <View
                 style={{
-                  fontSize: 20,
-                  fontFamily: fonts.medium,
-                  color: 'white',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  //   backgroundColor: 'red',
+                  width: '100%',
                 }}
               >
-                Add to cart
-              </Text>
-              <Image
-                source={require('../../../assets/cartBagw.png')}
-                style={{
-                  width: 20,
-                  height: 20,
-                  marginLeft: 20,
-                  resizeMode: 'contain',
-                  //   position: 'absolute',
-                  //   right: 0,
-                }}
-              />
-            </View>
-            {/* </LinearGradient> */}
-          </TouchableOpacity>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontFamily: fonts.medium,
+                    color: 'white',
+                  }}
+                >
+                  Add to cart
+                </Text>
+                <Image
+                  source={require('../../../assets/cartBagw.png')}
+                  style={{
+                    width: 20,
+                    height: 20,
+                    marginLeft: 20,
+                    resizeMode: 'contain',
+                    //   position: 'absolute',
+                    //   right: 0,
+                  }}
+                />
+              </View>
+              {/* </LinearGradient> */}
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }

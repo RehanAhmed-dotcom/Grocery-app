@@ -197,9 +197,7 @@ export default function Login() {
                 </View>
               </View>
               <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('BottomNav', { screen: 'Home' })
-                }
+                onPress={() => navigation.navigate('Home')}
                 style={{
                   borderRadius: 10,
                   overflow: 'hidden',

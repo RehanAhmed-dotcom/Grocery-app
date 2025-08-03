@@ -2,7 +2,7 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 export type RootTabParamList = {
   Home: undefined;
   Favourite: undefined;
-  Cart: undefined;
+  // Cart: undefined;
   Profile: undefined;
 };
 export type RootStackParamList = {
@@ -11,6 +11,7 @@ export type RootStackParamList = {
   Login: undefined;
   Forgot: undefined;
   VerifyNumber: undefined;
+  Cart: undefined;
   ConfirmCode: undefined;
   ConfirmCodeForgot: undefined;
   BottomNav: NavigatorScreenParams<RootTabParamList>;
@@ -20,6 +21,7 @@ export type RootStackParamList = {
   About: undefined;
   MyOrders: undefined;
   Address: undefined;
+  Home: undefined;
   AddAddress: undefined;
   CreditCards: undefined;
   AddCard: undefined;
