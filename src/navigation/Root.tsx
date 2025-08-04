@@ -34,6 +34,7 @@ import ChangePasswordRider from '../Screens/Rider/ChangePasswordRider';
 import { RootStackParamList } from './types';
 import Home from '../Screens/ExtraScreen/Home';
 import Cart from '../Screens/BottomScreens/Cart';
+import Checkout from '../Screens/ExtraScreen/Checkout';
 const Stack = createStackNavigator<RootStackParamList>();
 export default function Root() {
   return (
@@ -59,6 +60,7 @@ export default function Root() {
         <Stack.Screen name="AddCard" component={AddCard} />
         <Stack.Screen name="Transactions" component={Transactions} />
         <Stack.Screen name="Notifications" component={Notifications} />
+        <Stack.Screen name="Checkout" component={Checkout} />
         <Stack.Screen
           name="CreateAccountRider"
           component={CreateAccountRider}

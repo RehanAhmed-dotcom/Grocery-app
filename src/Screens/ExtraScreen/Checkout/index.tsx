@@ -34,17 +34,21 @@ import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from 'react-native-responsive-screen';
+import CheckoutItem from '../../../component/CheckoutItem';
 
 // import Categories from '../Categories';
 const { width, height } = Dimensions.get('window');
 const bannerHeight = height * 0.3;
-const Cart = () => {
+const Checkout = () => {
   const scrollRef = useRef(null);
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [activeIndex, setActiveIndex] = useState(0);
   const [reasonShow, setReasonShow] = useState(false);
   const [reason, setReason] = useState('');
   const [verifyShow, setVerifyShow] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [voucher, setVoucher] = useState('');
   const images1 = [
     require('../../../assets/slide1.png'),
     require('../../../assets/slide2.png'),
@@ -582,7 +586,7 @@ const Cart = () => {
           <Text
             style={{ marginLeft: 10, fontSize: 16, fontFamily: fonts.medium }}
           >
-            Cart
+            Checkout
           </Text>
         </View>
       </View>
@@ -591,15 +595,6 @@ const Cart = () => {
         style={{ paddingBottom: 20 }}
         showsVerticalScrollIndicator={false}
       >
-        <Text
-          style={{
-            fontSize: 18,
-            fontFamily: fonts.bold,
-            color: 'black',
-            marginTop: 10,
-            marginLeft: 15,
-          }}
-        ></Text>
         {/* Image Slider */}
 
         {/* End Image Slider */}
@@ -613,27 +608,205 @@ const Cart = () => {
           }}
         >
           <Text style={{ fontSize: 18, fontFamily: fonts.bold }}>
-            Just For You
+            Personal Information
           </Text>
           {/* <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
             <FontAwesome name="angle-right" size={24} color={colors.grey} />
           </TouchableOpacity> */}
         </View>
-        <View>
-          <FlatList
-            // showsHorizontalScrollIndicator={false}
-            data={products}
-            // numColumns={3}
-            horizontal
-            keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => (
-              <ForYou
-                item={item}
-                // ={item.image}
-                navigation={navigation}
-              />
-            )}
+        <View style={{ marginTop: 10, marginLeft: 15 }}>
+          <Text
+            style={{ fontSize: 16, fontFamily: fonts.medium, color: 'black' }}
+          >
+            Name
+          </Text>
+          <TextInput
+            placeholder="Name"
+            value={name}
+            onChangeText={text => setName(text)}
+            placeholderTextColor={'#00000088'}
+            style={{
+              backgroundColor: '#ccc',
+              borderRadius: 40,
+              height: 50,
+              color: 'black',
+              paddingHorizontal: 20,
+              marginTop: 10,
+              width: '94%',
+            }}
           />
+        </View>
+        <View style={{ marginTop: 10, marginLeft: 15 }}>
+          <Text
+            style={{ fontSize: 16, fontFamily: fonts.medium, color: 'black' }}
+          >
+            Email
+          </Text>
+          <TextInput
+            placeholder="Email"
+            value={email}
+            onChangeText={text => setEmail(text)}
+            placeholderTextColor={'#00000088'}
+            style={{
+              backgroundColor: '#ccc',
+              borderRadius: 40,
+              height: 50,
+              color: 'black',
+              paddingHorizontal: 20,
+              marginTop: 10,
+              width: '94%',
+            }}
+          />
+        </View>
+        <View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 10,
+              marginHorizontal: 15,
+            }}
+          >
+            <Text
+              style={{ fontSize: 18, color: 'black', fontFamily: fonts.bold }}
+            >
+              Address
+            </Text>
+            {/* <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
+            <FontAwesome name="angle-right" size={24} color={colors.grey} />
+          </TouchableOpacity> */}
+            <Text
+              style={{
+                fontSize: 14,
+                fontFamily: fonts.medium,
+                color: colors.primaryColor,
+              }}
+            >
+              Change Address
+            </Text>
+          </View>
+          <TextInput
+            placeholder="Email"
+            value={'Shamsabad Rawalpindi'}
+            // onChangeText={text => setEmail(text)}
+            placeholderTextColor={'#00000088'}
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 40,
+              height: 50,
+              marginLeft: 15,
+              color: 'black',
+              paddingHorizontal: 20,
+              marginTop: 10,
+              width: '90%',
+            }}
+          />
+        </View>
+        <View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 10,
+              marginHorizontal: 15,
+            }}
+          >
+            <Text
+              style={{ fontSize: 18, color: 'black', fontFamily: fonts.bold }}
+            >
+              Payment Method
+            </Text>
+            {/* <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
+            <FontAwesome name="angle-right" size={24} color={colors.grey} />
+          </TouchableOpacity> */}
+            <Text
+              style={{
+                fontSize: 14,
+                fontFamily: fonts.medium,
+                color: colors.primaryColor,
+              }}
+            >
+              Payment options
+            </Text>
+          </View>
+          <TextInput
+            placeholder="Email"
+            value={'Cash on delivery'}
+            // onChangeText={text => setEmail(text)}
+            placeholderTextColor={'#00000088'}
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 40,
+              height: 50,
+              marginLeft: 15,
+              color: 'black',
+              paddingHorizontal: 20,
+              marginTop: 10,
+              width: '90%',
+            }}
+          />
+        </View>
+        <View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 10,
+              marginHorizontal: 15,
+            }}
+          >
+            <Text
+              style={{ fontSize: 18, color: 'black', fontFamily: fonts.bold }}
+            >
+              Voucher Code
+            </Text>
+            {/* <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
+            <FontAwesome name="angle-right" size={24} color={colors.grey} />
+          </TouchableOpacity> */}
+            <Text
+              style={{
+                fontSize: 14,
+                fontFamily: fonts.medium,
+                color: colors.primaryColor,
+              }}
+            >
+              Select Voucher
+            </Text>
+          </View>
+          <TextInput
+            placeholder="Enter code here"
+            value={voucher}
+            onChangeText={text => setVoucher(text)}
+            placeholderTextColor={'#00000088'}
+            style={{
+              backgroundColor: '#ccc',
+              borderRadius: 40,
+              height: 50,
+              marginLeft: 15,
+              color: 'black',
+              paddingHorizontal: 20,
+              marginTop: 10,
+              width: '90%',
+            }}
+          />
+          <TouchableOpacity
+            style={{
+              position: 'absolute',
+              top: 50,
+              right: 40,
+              borderRadius: 30,
+              height: 35,
+              alignItems: 'center',
+              justifyContent: 'center',
+
+              width: 70,
+              backgroundColor: colors.red,
+            }}
+          >
+            <Text style={{ color: 'white', fontFamily: fonts.regular }}>
+              Apply
+            </Text>
+          </TouchableOpacity>
         </View>
         {/* <View>
           <FlatList
@@ -702,21 +875,100 @@ const Cart = () => {
             marginHorizontal: 15,
           }}
         >
-          <Text style={{ fontSize: 18, fontFamily: fonts.bold }}>
-            Your Cart
-          </Text>
           {/* <FontAwesome name="angle-right" size={24} color={colors.grey} /> */}
         </View>
-        <View style={{ marginBottom: 30 }}>
+        <View
+          style={{
+            // marginBottom: 80,
+            borderRadius: 10,
+            marginTop: 10,
+            backgroundColor: 'white',
+            marginHorizontal: 15,
+          }}
+        >
           <FlatList
             // showsHorizontalScrollIndicator={false}
             data={products}
             numColumns={3}
             keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => (
-              <CartItem item={item} navigation={navigation} />
+              <CheckoutItem item={item} navigation={navigation} />
             )}
           />
+        </View>
+        <View
+          style={{
+            marginBottom: 80,
+            borderRadius: 10,
+            marginTop: 10,
+            paddingHorizontal: 15,
+            backgroundColor: 'white',
+            marginHorizontal: 15,
+          }}
+        >
+          <View
+            style={{
+              borderBottomColor: 'grey',
+              // marginHorizontal: 10,
+              borderBottomWidth: 1,
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: fonts.bold,
+                fontSize: 16,
+                marginBottom: 10,
+                marginTop: 10,
+                // marginLeft: 10,
+              }}
+            >
+              Order Summary
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+
+              justifyContent: 'space-between',
+              marginTop: 30,
+            }}
+          >
+            <Text style={{ fontFamily: fonts.medium }}>Item(s) total</Text>
+            <Text style={{}}>Rs 585</Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+
+              justifyContent: 'space-between',
+              marginTop: 15,
+            }}
+          >
+            <Text>Delivery Fee</Text>
+            <Text style={{}}>Rs 200</Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+
+              justifyContent: 'space-between',
+              marginTop: 10,
+            }}
+          >
+            <Text>Short Fee</Text>
+            <Text style={{}}>Rs 585</Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+
+              justifyContent: 'space-between',
+              marginTop: 10,
+            }}
+          >
+            <Text>Item(s) total</Text>
+            <Text style={{}}>Rs 585</Text>
+          </View>
         </View>
       </ScrollView>
       <View
@@ -770,7 +1022,7 @@ const Cart = () => {
                 color: 'white',
               }}
             >
-              Proceed to checkout
+              Place Order
             </Text>
           </View>
 
@@ -792,7 +1044,7 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Checkout;
 
 const styles = StyleSheet.create({
   container: { flex: 1 },

@@ -16,9 +16,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import PhoneInput from 'react-native-phone-number-input';
 import Header from '../../../component/Header';
 import { colors, fonts } from '../../../component/Constant';
-
+import type { StackNavigationProp } from '@react-navigation/stack';
+import type { RootStackParamList } from '../../../navigation/types';
 export default function VerifyNumber() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const { bottom } = useSafeAreaInsets();
   const [value, setValue] = useState('');
   const [formattedValue, setFormattedValue] = useState('');

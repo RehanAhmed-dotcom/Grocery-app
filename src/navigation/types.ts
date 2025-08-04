@@ -17,6 +17,7 @@ export type RootStackParamList = {
   BottomNav: NavigatorScreenParams<RootTabParamList>;
   ProductDetail: undefined;
   Categories: undefined;
+  Checkout: undefined;
   CategoryProducts: undefined;
   About: undefined;
   MyOrders: undefined;

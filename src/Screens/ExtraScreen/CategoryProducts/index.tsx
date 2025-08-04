@@ -20,9 +20,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Header from '../../../component/Header';
 import { colors, fonts, products } from '../../../component/Constant';
 import ProductView from '../../../component/ProductView';
-
+import type { StackNavigationProp } from '@react-navigation/stack';
+import type { RootStackParamList } from '../../../navigation/types';
 export default function CategoryProducts() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const route = useRoute();
   const { category } = route.params;
   const { top, bottom } = useSafeAreaInsets();

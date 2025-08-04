@@ -40,24 +40,32 @@ const Home = () => {
   const { top } = useSafeAreaInsets();
   const categories = [
     {
-      id: 1,
+      id: '1',
       name: 'Vegetables',
       image: require('../../../assets/VegetablesImg.jpg'),
     },
-    { id: 2, name: 'Fruits', image: require('../../../assets/FruitsImg.jpg') },
     {
-      id: 3,
+      id: '2',
+      name: 'Fruits',
+      image: require('../../../assets/FruitsImg.jpg'),
+    },
+    {
+      id: '3',
       name: 'Beverages',
       image: require('../../../assets/BeveragesImg.jpg'),
     },
     {
-      id: 4,
+      id: '4',
       name: 'Grocery',
       image: require('../../../assets/GroceryImg.jpg'),
     },
-    { id: 5, name: 'Edible oil', image: require('../../../assets/OilImg.jpg') },
     {
-      id: 6,
+      id: '5',
+      name: 'Edible oil',
+      image: require('../../../assets/OilImg.jpg'),
+    },
+    {
+      id: '6',
       name: 'Household',
       image: require('../../../assets/HouseholdImg.jpg'),
     },
@@ -155,18 +163,16 @@ const Home = () => {
           <Text style={{ fontSize: 18, fontFamily: fonts.bold }}>
             Special Promotions
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
+          {/* <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
             <FontAwesome name="angle-right" size={24} color={colors.grey} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View>
           <FlatList
             // showsHorizontalScrollIndicator={false}
             data={categories}
             numColumns={3}
-            keyExtractor={item => {
-              `${item.id}+a`;
-            }}
+            keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => (
               <CategoriesHome
                 name={item.name}
@@ -246,16 +252,14 @@ const Home = () => {
           <Text style={{ fontSize: 18, fontFamily: fonts.bold }}>
             Super Sasta
           </Text>
-          <FontAwesome name="angle-right" size={24} color={colors.grey} />
+          {/* <FontAwesome name="angle-right" size={24} color={colors.grey} /> */}
         </View>
         <View style={{ marginBottom: 30 }}>
           <FlatList
             // showsHorizontalScrollIndicator={false}
             data={categories}
             numColumns={3}
-            keyExtractor={item => {
-              `${item.id}+a`;
-            }}
+            keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => (
               <CategoriesHome
                 name={item.name}

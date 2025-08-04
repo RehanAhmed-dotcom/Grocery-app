@@ -23,7 +23,7 @@ const CategoriesHome: React.FC<CategoriesProps> = ({
         alignItems: 'center',
         marginLeft: 15,
         marginTop: 10,
-        width: 100,
+        width: '28%',
 
         paddingHorizontal: 10,
         borderRadius: 5,
