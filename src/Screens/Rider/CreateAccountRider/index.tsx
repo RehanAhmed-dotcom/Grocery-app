@@ -15,17 +15,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { colors, fonts, images } from './constant';
 // import Header from './components/Header';
+import FaceBook from 'react-native-vector-icons/EvilIcons';
+import Ionicons from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { colors, fonts, images } from '../../../component/Constant';
 import Header from '../../../component/Header';
-
+import type { StackNavigationProp } from '@react-navigation/stack';
+import type { RootStackParamList } from '../../../navigation/types';
 export default function CreateAccountRider() {
   const [showPassword, setShowPassword] = useState(false);
   const { top, bottom } = useSafeAreaInsets();
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const scrollViewRef = useRef(null);
   const emailInputRef = useRef(null);
   const phoneInputRef = useRef(null);
@@ -63,12 +66,6 @@ export default function CreateAccountRider() {
         style={{ width: '100%', height: '100%' }}
         resizeMode="cover"
       >
-        <Header
-          firstIcon={true}
-          navigation={navigation}
-          name="Create Account"
-          lastIcon={false}
-        />
         <KeyboardAvoidingView
           style={{ flex: 1 }}
           behavior={
@@ -76,146 +73,207 @@ export default function CreateAccountRider() {
               ? 'padding'
               : keyboardStatus === true
               ? 'height'
-              : 'undefined'
+              : undefined
           }
           keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
         >
           <ScrollView
             ref={scrollViewRef}
-            contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end' }}
+            contentContainerStyle={{ flexGrow: 1 }}
             keyboardShouldPersistTaps="handled"
           >
-            <View
-              style={{
-                backgroundColor: '#F4F5F9',
-                borderTopLeftRadius: 10,
-                borderTopRightRadius: 10,
-                paddingVertical: 10,
-                width: '100%',
-              }}
-            >
+            <View style={{ marginTop: 30 }}>
               <Text
                 style={{
-                  marginLeft: 20,
+                  color: 'white',
+                  fontSize: 24,
                   fontFamily: fonts.bold,
-                  fontSize: 40,
-                  lineHeight: 55,
-                  marginTop: 20,
+                  textAlign: 'center',
                 }}
               >
-                Create account
+                Welcome
               </Text>
-              <Text
-                style={{
-                  marginLeft: 20,
-                  fontFamily: fonts.regular,
-                  fontSize: 20,
-                  lineHeight: 25,
-                  color: colors.grey,
-                }}
-              >
-                Quickly create account
-              </Text>
-              <View style={styles.inputcontainer}>
-                <Fontisto name="email" size={22} color={colors.grey} />
-                <TextInput
-                  ref={emailInputRef}
-                  style={styles.input}
-                  placeholder="Email address"
-                  onFocus={() => scrollToInput(emailInputRef)}
-                  keyboardType="email-address"
-                />
-              </View>
-              <View style={styles.inputcontainer}>
-                <Feather name="phone" size={22} color={colors.grey} />
-                <TextInput
-                  ref={phoneInputRef}
-                  style={styles.input}
-                  placeholder="Phone number"
-                  keyboardType="phone-pad"
-                  onFocus={() => scrollToInput(phoneInputRef)}
-                />
-              </View>
-              <View style={styles.inputcontainer}>
-                <Feather name="lock" size={22} color={colors.grey} />
-                <TextInput
-                  ref={passwordInputRef}
-                  style={styles.input}
-                  placeholder="........."
-                  secureTextEntry={!showPassword}
-                  onFocus={() => scrollToInput(passwordInputRef)}
-                />
-                <TouchableOpacity
-                  onPress={() => setShowPassword(!showPassword)}
-                >
-                  <Feather
-                    name={!showPassword ? 'eye-off' : 'eye'}
-                    size={20}
-                    color={colors.grey}
-                  />
-                </TouchableOpacity>
-              </View>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('VerifyNumberRider')}
-                style={{
-                  borderRadius: 10,
-                  overflow: 'hidden',
-                  elevation: 4, // Android shadow
-                  shadowColor: '#000', // iOS shadow
-                  shadowOffset: { width: 0, height: 2 },
-                  shadowOpacity: 0.2,
-                  shadowRadius: 4,
-                  height: 60,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: colors.primaryColor,
-                  marginHorizontal: 15,
-                  marginTop: 15,
-                }}
-              >
-                {/* <LinearGradient
-                    colors={['#AEDC81', '#6CC51D']}
-                    locations={[0.01, 1]}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    style={styles.gradient}
-                  > */}
+              <View style={{ alignSelf: 'center' }}>
                 <Text
                   style={{
-                    fontSize: 20,
-                    fontFamily: fonts.medium,
                     color: 'white',
+                    fontSize: 14,
+                    marginTop: 10,
+                    width: 250,
+                    // backgroundColor: 'red',
+                    fontFamily: fonts.regular,
+                    textAlign: 'center',
                   }}
                 >
-                  Signup
+                  Enter your email address and password to access your account
+                  or create an account
                 </Text>
-                {/* </LinearGradient> */}
-              </TouchableOpacity>
+              </View>
               <View
                 style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginVertical: 15,
+                  backgroundColor: 'white',
+                  borderRadius: 30,
+                  marginBottom: 30,
+                  padding: 15,
                   marginHorizontal: 15,
+                  marginTop: 30,
                 }}
               >
                 <Text
                   style={{
-                    marginLeft: 20,
-                    fontFamily: fonts.regular,
-                    fontSize: 20,
-                    lineHeight: 25,
-                    color: colors.grey,
+                    fontSize: 16,
+                    marginTop: 15,
+                    marginLeft: 15,
+                    color: 'black',
                   }}
                 >
-                  Already have an account?{' '}
-                  <Text
-                    onPress={() => navigation.navigate('LoginRider')}
-                    style={{ fontFamily: fonts.medium, color: 'black' }}
-                  >
-                    Login
-                  </Text>
+                  Enter name
                 </Text>
+                <View style={styles.inputcontainer}>
+                  {/* <Fontisto name="email" size={22} color={colors.grey} /> */}
+                  <TextInput
+                    ref={emailInputRef}
+                    style={styles.input}
+                    placeholderTextColor={'grey'}
+                    placeholder="Alex William"
+                    onFocus={() => scrollToInput(emailInputRef)}
+                    keyboardType="email-address"
+                  />
+                </View>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    marginTop: 10,
+                    marginLeft: 15,
+                    color: 'black',
+                  }}
+                >
+                  Email address
+                </Text>
+                <View style={styles.inputcontainer}>
+                  {/* <Fontisto name="email" size={22} color={colors.grey} /> */}
+                  <TextInput
+                    ref={emailInputRef}
+                    style={styles.input}
+                    placeholderTextColor={'grey'}
+                    placeholder="abc@gmail.com"
+                    onFocus={() => scrollToInput(emailInputRef)}
+                    keyboardType="email-address"
+                  />
+                </View>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    marginTop: 10,
+                    marginLeft: 15,
+                    color: 'black',
+                  }}
+                >
+                  Enter your number
+                </Text>
+                <View style={styles.inputcontainer}>
+                  {/* <Fontisto name="email" size={22} color={colors.grey} /> */}
+                  <TextInput
+                    ref={emailInputRef}
+                    style={styles.input}
+                    placeholderTextColor={'grey'}
+                    placeholder="+92 1234567890"
+                    onFocus={() => scrollToInput(emailInputRef)}
+                    keyboardType="number-pad"
+                  />
+                </View>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    marginTop: 10,
+                    marginLeft: 15,
+                    color: 'black',
+                  }}
+                >
+                  Create a passwrord
+                </Text>
+                <View style={styles.inputcontainer}>
+                  {/* <Feather name="lock" size={22} color={colors.grey} /> */}
+                  <TextInput
+                    ref={passwordInputRef}
+                    style={styles.input}
+                    placeholderTextColor={'grey'}
+                    placeholder="........."
+                    secureTextEntry={!showPassword}
+                    onFocus={() => scrollToInput(passwordInputRef)}
+                  />
+                  {/* <TouchableOpacity
+                    onPress={() => setShowPassword(!showPassword)}
+                  >
+                    <Feather
+                      name={!showPassword ? 'eye-off' : 'eye'}
+                      size={20}
+                      color={colors.grey}
+                    />
+                  </TouchableOpacity> */}
+                </View>
+
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('VerifyNumberRider')}
+                  style={{
+                    borderRadius: 10,
+                    overflow: 'hidden',
+                    backgroundColor: colors.primaryColor,
+                    elevation: 4, // Android shadow
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: 50,
+                    shadowColor: '#000', // iOS shadow
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 4,
+                    marginHorizontal: 15,
+                    marginTop: 30,
+                    marginBottom: 30,
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontFamily: fonts.medium,
+                      color: 'white',
+                    }}
+                  >
+                    Sign up
+                  </Text>
+                </TouchableOpacity>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontSize: 16,
+                    fontFamily: fonts.regular,
+                    marginTop: 30,
+                  }}
+                >
+                  Other sign up options
+                </Text>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: 20,
+                  }}
+                >
+                  <FaceBook name="sc-facebook" size={25} color={'blue'} />
+                  <Fontisto
+                    name="google"
+                    size={20}
+                    style={{ marginLeft: 2 }}
+                    color={'black'}
+                  />
+                  <Ionicons
+                    name="apple"
+                    size={20}
+                    style={{ marginLeft: 7 }}
+                    color={'black'}
+                  />
+                </View>
               </View>
             </View>
           </ScrollView>

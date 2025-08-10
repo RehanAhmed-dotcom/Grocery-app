@@ -113,6 +113,7 @@ const Home = () => {
           <Feather name="search" size={22} color={colors.grey} />
           <TextInput
             style={styles.input}
+            placeholderTextColor={'#ccc'}
             placeholder="Search for fruits, vegitables & more"
           />
           {/* <TouchableOpacity onPress={() => Alert.alert('In Progress')}>

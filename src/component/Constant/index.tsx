@@ -7,14 +7,14 @@ const fonts = {
 };
 const images = {
   logo: require('../../assets/logo.png'),
-  auth1: require('../../assets/auth1.png'),
+  auth1: require('../../assets/background.jpg'),
   googleIcon: require('../../assets/googleIcon.png'),
   more: require('../../assets/more.png'),
 };
 const colors = {
   grey: '#868889',
   green: 'green',
-  primaryColor: '#AEDC81',
+  primaryColor: '#09a13c',
   red: 'red',
 };
 const products = [
@@ -162,38 +162,38 @@ const products = [
     description:
       'Classic Coca Cola with its iconic taste and fizz. Refreshing and energizing, best served chilled. A perfect companion for any meal.',
   },
-  {
-    id: 10,
-    name: 'Pepsi',
-    price: 1.1,
-    quantity: '500ml',
-    image: require('../../assets/pepsi.png'),
-    new: '0',
-    islike: '1',
-    isDiscount: '0',
-    dicountp: '0',
-    category: 'Beverages',
-    feature: '1',
-    rating: 4.4,
-    description:
-      'Bold and bubbly Pepsi for a quick refresh. Great with snacks or on its own. Crisp, cool, and always satisfying.',
-  },
-  {
-    id: 11,
-    name: 'Basmati Rice',
-    price: 12,
-    quantity: '5kg',
-    image: require('../../assets/rice.png'),
-    new: '0',
-    islike: '0',
-    isDiscount: '1',
-    dicountp: '15',
-    category: 'Grocery',
-    feature: '0',
-    rating: 4.6,
-    description:
-      'Aromatic long-grain Basmati rice. Ideal for biryani, pilaf, or everyday meals. Cooks fluffy with a rich fragrance.',
-  },
+  // {
+  //   id: 10,
+  //   name: 'Pepsi',
+  //   price: 1.1,
+  //   quantity: '500ml',
+  //   image: require('../../assets/pepsi.png'),
+  //   new: '0',
+  //   islike: '1',
+  //   isDiscount: '0',
+  //   dicountp: '0',
+  //   category: 'Beverages',
+  //   feature: '1',
+  //   rating: 4.4,
+  //   description:
+  //     'Bold and bubbly Pepsi for a quick refresh. Great with snacks or on its own. Crisp, cool, and always satisfying.',
+  // },
+  // {
+  //   id: 11,
+  //   name: 'Basmati Rice',
+  //   price: 12,
+  //   quantity: '5kg',
+  //   image: require('../../assets/rice.png'),
+  //   new: '0',
+  //   islike: '0',
+  //   isDiscount: '1',
+  //   dicountp: '15',
+  //   category: 'Grocery',
+  //   feature: '0',
+  //   rating: 4.6,
+  //   description:
+  //     'Aromatic long-grain Basmati rice. Ideal for biryani, pilaf, or everyday meals. Cooks fluffy with a rich fragrance.',
+  // },
   {
     id: 12,
     name: 'Wheat Flour',
@@ -210,22 +210,22 @@ const products = [
     description:
       'Premium wheat flour for soft, fluffy chapatis and breads. Stone-ground and fresh. Perfect for daily home cooking.',
   },
-  {
-    id: 13,
-    name: 'Sunflower Oil',
-    price: 10,
-    quantity: '2L',
-    image: require('../../assets/sunflower-oil.png'),
-    new: '0',
-    islike: '0',
-    isDiscount: '1',
-    dicountp: '25',
-    category: 'Edible oil',
-    feature: '0',
-    rating: 4.4,
-    description:
-      'Light and healthy sunflower oil, perfect for frying and cooking. Rich in Vitamin E and cholesterol-free.',
-  },
+  // {
+  //   id: 13,
+  //   name: 'Sunflower Oil',
+  //   price: 10,
+  //   quantity: '2L',
+  //   image: require('../../assets/sunflower-oil.png'),
+  //   new: '0',
+  //   islike: '0',
+  //   isDiscount: '1',
+  //   dicountp: '25',
+  //   category: 'Edible oil',
+  //   feature: '0',
+  //   rating: 4.4,
+  //   description:
+  //     'Light and healthy sunflower oil, perfect for frying and cooking. Rich in Vitamin E and cholesterol-free.',
+  // },
   {
     id: 14,
     name: 'Canola Oil',

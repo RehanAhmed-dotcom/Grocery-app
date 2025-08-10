@@ -221,7 +221,8 @@ export default function ProductDetail() {
               </View>
             </View>
             <TouchableOpacity
-              onPress={() => Alert.alert('Kamm kar rhy hain sbr kro')}
+              onPress={() => navigation.navigate('Cart')}
+              // onPress={() => Alert.alert('Kamm kar rhy hain sbr kro')}
               style={{
                 borderRadius: 10,
                 overflow: 'hidden',

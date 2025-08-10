@@ -1,5 +1,6 @@
 import {
   Alert,
+  ImageBackground,
   StatusBar,
   StyleSheet,
   Text,
@@ -14,13 +15,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { fonts, colors } from './constant';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../../../component/Header';
-import { colors, fonts } from '../../../component/Constant';
-
+import { colors, fonts, images } from '../../../component/Constant';
+import type { StackNavigationProp } from '@react-navigation/stack';
+import type { RootStackParamList } from '../../../navigation/types';
+import { heightPercentageToDP } from 'react-native-responsive-screen';
 export default function ConfirmCodeRider() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const { bottom } = useSafeAreaInsets();
 
-  const [otp, setOtp] = useState(['', '', '', '', '', '']);
+  const [otp, setOtp] = useState(['', '', '', '']);
   const inputs = useRef([]);
 
   const handleChange = (text, index) => {
@@ -29,7 +32,7 @@ export default function ConfirmCodeRider() {
       newOtp[index] = text;
       setOtp(newOtp);
 
-      if (index < 5) {
+      if (index < 3) {
         inputs.current[index + 1].focus();
       }
     } else if (text === '') {
@@ -47,7 +50,7 @@ export default function ConfirmCodeRider() {
 
   const handleSubmit = () => {
     const code = otp.join('');
-    if (code.length < 6) {
+    if (code.length < 4) {
       Alert.alert('Error', 'Please enter complete 6-digit OTP');
     } else {
       navigation.navigate('HomeRider');
@@ -56,76 +59,92 @@ export default function ConfirmCodeRider() {
 
   return (
     <View style={{ flex: 1, marginBottom: bottom }}>
-      <StatusBar barStyle="dark-content" />
-      <Header
+      <ImageBackground
+        source={images.auth1}
+        style={{ width: '100%', height: '100%' }}
+        resizeMode="cover"
+      >
+        <StatusBar barStyle="dark-content" />
+        {/* <Header
         firstIcon={true}
         navigation={navigation}
         name="Verify Number"
         lastIcon={false}
         textColor="black"
-      />
+      /> */}
 
-      <View
-        style={{ marginHorizontal: 17, marginTop: '20%', alignItems: 'center' }}
-      >
-        <Text style={styles.heading}>Verify your number</Text>
-        <Text style={styles.subHeading}>Enter your OTP code below</Text>
-      </View>
+        <View
+          style={{
+            marginHorizontal: 17,
+            marginTop: '20%',
+            alignItems: 'center',
+          }}
+        >
+          <Text style={styles.heading}>Verify your number</Text>
+          <Text style={styles.subHeading}>
+            {' '}
+            Enter the 4 digit OTP sent to your registered mobile number
+          </Text>
+          <Text style={styles.subHeading1}>
+            Enter the 4 digit OTP sent to your registered mobile number
+          </Text>
+        </View>
 
-      <View style={styles.otpContainer}>
-        {otp.map((digit, index) => (
-          <View style={styles.inputcontainer} key={index}>
-            <TextInput
-              ref={ref => (inputs.current[index] = ref)}
-              style={styles.input}
-              keyboardType="number-pad"
-              maxLength={1}
-              value={digit}
-              onChangeText={text => handleChange(text, index)}
-              onKeyPress={e => handleKeyPress(e, index)}
-              autoFocus={index === 0}
-            />
-          </View>
-        ))}
-      </View>
+        <View style={styles.otpContainer}>
+          {otp.map((digit, index) => (
+            <View style={styles.inputcontainer} key={index}>
+              <TextInput
+                ref={ref => (inputs.current[index] = ref)}
+                style={styles.input}
+                keyboardType="number-pad"
+                maxLength={1}
+                value={digit}
+                onChangeText={text => handleChange(text, index)}
+                onKeyPress={e => handleKeyPress(e, index)}
+                autoFocus={index === 0}
+              />
+            </View>
+          ))}
+        </View>
 
-      <TouchableOpacity onPress={handleSubmit} style={styles.buttonWrapper}>
-        {/* <LinearGradient
+        <TouchableOpacity onPress={handleSubmit} style={styles.buttonWrapper}>
+          {/* <LinearGradient
             colors={['#AEDC81', '#6CC51D']}
             locations={[0.01, 1]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.gradient}
           > */}
-        <Text style={styles.buttonText}>Next</Text>
-        {/* </LinearGradient> */}
-      </TouchableOpacity>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginVertical: 15,
-          marginHorizontal: 15,
-        }}
-      >
-        <Text
+          <Text style={styles.buttonText}>Next</Text>
+          {/* </LinearGradient> */}
+        </TouchableOpacity>
+        {/* <View
           style={{
-            marginLeft: 20,
-            fontFamily: fonts.regular,
-            fontSize: 18,
-            lineHeight: 25,
-            color: colors.grey,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginVertical: 15,
+            marginHorizontal: 15,
           }}
         >
-          Did’nt receive the code ?{' '}
-        </Text>
-        <Text
-          onPress={() => Alert.alert('In Progress')}
-          style={{ fontFamily: fonts.medium, fontSize: 18, color: 'black' }}
-        >
-          Resend a new code
-        </Text>
-      </View>
+          <Text
+            style={{
+              marginLeft: 20,
+              fontFamily: fonts.regular,
+              fontSize: 18,
+              lineHeight: 25,
+              color: colors.grey,
+            }}
+          >
+            Did’nt receive the code ?{' '}
+          </Text>
+          <Text
+            onPress={() => Alert.alert('In Progress')}
+            style={{ fontFamily: fonts.medium, fontSize: 18, color: 'black' }}
+          >
+            Resend a new code
+          </Text>
+        </View> */}
+      </ImageBackground>
     </View>
   );
 }
@@ -134,35 +153,46 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 30,
     fontFamily: fonts.bold,
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
   },
   subHeading: {
     fontSize: 15,
     fontFamily: fonts.regular,
-    color: 'black',
+    color: 'white',
+    width: 250,
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: 30,
+  },
+  subHeading1: {
+    fontSize: 15,
+    fontFamily: fonts.regular,
+    color: 'white',
+    width: 250,
+    textAlign: 'center',
+    marginTop: 40,
   },
   otpContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 10,
+    gap: 20,
     marginTop: 20,
   },
   inputcontainer: {
     width: 50,
     height: 50,
     borderWidth: 1,
-    borderRadius: 12,
+    borderRadius: 30,
+    backgroundColor: 'green',
+
     borderColor: '#ddd',
     justifyContent: 'center',
     alignItems: 'center',
   },
   input: {
     fontFamily: fonts.regular,
-    color: 'black',
+    color: 'white',
     fontSize: 20,
     textAlign: 'center',
     width: '100%',
@@ -173,7 +203,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     elevation: 4,
     shadowColor: '#000',
-    backgroundColor: colors.primaryColor,
+    backgroundColor: 'white',
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
@@ -181,7 +211,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     marginHorizontal: 15,
-    marginTop: 30,
+    marginTop: heightPercentageToDP(15),
   },
   gradient: {
     paddingVertical: 14,
@@ -193,6 +223,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     fontFamily: fonts.medium,
-    color: 'white',
+    color: colors.primaryColor,
   },
 });

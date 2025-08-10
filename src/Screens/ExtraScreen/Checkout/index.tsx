@@ -956,7 +956,7 @@ const Checkout = () => {
             }}
           >
             <Text>Short Fee</Text>
-            <Text style={{}}>Rs 585</Text>
+            <Text style={{}}>Rs 0</Text>
           </View>
           <View
             style={{
@@ -966,8 +966,8 @@ const Checkout = () => {
               marginTop: 10,
             }}
           >
-            <Text>Item(s) total</Text>
-            <Text style={{}}>Rs 585</Text>
+            <Text>Total</Text>
+            <Text style={{}}>Rs 785</Text>
           </View>
         </View>
       </ScrollView>
@@ -990,7 +990,7 @@ const Checkout = () => {
         }}
       >
         <TouchableOpacity
-          onPress={() => setReasonShow(true)}
+          onPress={() => Alert.alert('Order Placed')}
           style={{
             height: 50,
             width: '90%',
@@ -1034,7 +1034,7 @@ const Checkout = () => {
               color: 'white',
             }}
           >
-            Rs 550
+            Rs 785
           </Text>
         </TouchableOpacity>
       </View>
