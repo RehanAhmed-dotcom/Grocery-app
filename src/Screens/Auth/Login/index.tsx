@@ -90,12 +90,12 @@ export default function Login() {
               <Text
                 style={{
                   color: 'white',
-                  fontSize: 24,
+                  fontSize: 36,
                   fontFamily: fonts.bold,
                   textAlign: 'center',
                 }}
               >
-                Welcome
+                Sign In
               </Text>
               <View style={{ alignSelf: 'center' }}>
                 <Text
@@ -124,7 +124,9 @@ export default function Login() {
               >
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: 14,
+
+                    fontFamily: fonts.semibold,
                     marginTop: 15,
                     marginLeft: 15,
                     color: 'black',
@@ -145,7 +147,9 @@ export default function Login() {
                 </View>
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: 14,
+
+                    fontFamily: fonts.semibold,
                     marginTop: 40,
                     marginLeft: 15,
                     color: 'black',
@@ -163,7 +167,7 @@ export default function Login() {
                     secureTextEntry={!showPassword}
                     onFocus={() => scrollToInput(passwordInputRef)}
                   />
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                     onPress={() => setShowPassword(!showPassword)}
                   >
                     <Feather
@@ -171,7 +175,7 @@ export default function Login() {
                       size={20}
                       color={colors.grey}
                     />
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                 </View>
 
                 <TouchableOpacity
@@ -195,7 +199,7 @@ export default function Login() {
                 >
                   <Text
                     style={{
-                      fontSize: 20,
+                      fontSize: 21,
                       fontFamily: fonts.medium,
                       color: 'white',
                     }}
@@ -206,7 +210,7 @@ export default function Login() {
                 <Text
                   style={{
                     textAlign: 'center',
-                    fontSize: 16,
+                    fontSize: 17,
                     fontFamily: fonts.regular,
                     marginTop: heightPercentageToDP(10),
                   }}

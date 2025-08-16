@@ -35,14 +35,28 @@ import { RootStackParamList } from './types';
 import Home from '../Screens/ExtraScreen/Home';
 import Cart from '../Screens/BottomScreens/Cart';
 import Checkout from '../Screens/ExtraScreen/Checkout';
+import Starting from '../Screens/Auth/Starting';
+import WelcomeScreen from '../Screens/Auth/WelcomeScreen';
+import EnterPassword from '../Screens/Auth/EnterPassword';
+import CNICDetails from '../Screens/Auth/CNICDetails';
+import CNICPics from '../Screens/Auth/CNICPics';
+import UtilityBills from '../Screens/Auth/UtilityBills';
+import Licence from '../Screens/Auth/Licence';
 const Stack = createStackNavigator<RootStackParamList>();
 export default function Root() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Starting" component={Starting} />
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
         <Stack.Screen name="Welcome" component={Welcome} />
+        <Stack.Screen name="EnterPassword" component={EnterPassword} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Licence" component={Licence} />
+        <Stack.Screen name="UtilityBills" component={UtilityBills} />
+        <Stack.Screen name="CNICDetails" component={CNICDetails} />
+        <Stack.Screen name="CNICPics" component={CNICPics} />
         <Stack.Screen name="ConfirmCodeForgot" component={ConfirmCodeForgot} />
         <Stack.Screen name="Forgot" component={Forgot} />
         <Stack.Screen name="VerifyNumber" component={VerifyNumber} />

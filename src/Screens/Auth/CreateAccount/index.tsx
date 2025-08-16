@@ -88,27 +88,27 @@ export default function CreateAccount() {
               <Text
                 style={{
                   color: 'white',
-                  fontSize: 24,
+                  fontSize: 36,
                   fontFamily: fonts.bold,
                   textAlign: 'center',
                 }}
               >
-                Welcome
+                Sign Up
               </Text>
               <View style={{ alignSelf: 'center' }}>
                 <Text
                   style={{
                     color: 'white',
                     fontSize: 14,
-                    marginTop: 10,
+                    marginTop: 30,
                     width: 250,
                     // backgroundColor: 'red',
                     fontFamily: fonts.regular,
                     textAlign: 'center',
                   }}
                 >
-                  Enter your email address and password to access your account
-                  or create an account
+                  To get more advantages sign up your accouts by filling in some
+                  information
                 </Text>
               </View>
               <View
@@ -123,7 +123,9 @@ export default function CreateAccount() {
               >
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: 14,
+
+                    fontFamily: fonts.semibold,
                     marginTop: 15,
                     marginLeft: 15,
                     color: 'black',
@@ -144,7 +146,9 @@ export default function CreateAccount() {
                 </View>
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: 14,
+
+                    fontFamily: fonts.semibold,
                     marginTop: 10,
                     marginLeft: 15,
                     color: 'black',
@@ -165,7 +169,9 @@ export default function CreateAccount() {
                 </View>
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: 14,
+
+                    fontFamily: fonts.semibold,
                     marginTop: 10,
                     marginLeft: 15,
                     color: 'black',
@@ -186,7 +192,9 @@ export default function CreateAccount() {
                 </View>
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: 14,
+
+                    fontFamily: fonts.semibold,
                     marginTop: 10,
                     marginLeft: 15,
                     color: 'black',
@@ -236,7 +244,7 @@ export default function CreateAccount() {
                 >
                   <Text
                     style={{
-                      fontSize: 20,
+                      fontSize: 22,
                       fontFamily: fonts.medium,
                       color: 'white',
                     }}
@@ -244,10 +252,43 @@ export default function CreateAccount() {
                     Sign up
                   </Text>
                 </TouchableOpacity>
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginVertical: 15,
+                    marginTop: 20,
+                    marginHorizontal: 15,
+                  }}
+                >
+                  <Text
+                    style={{
+                      marginLeft: 20,
+                      fontFamily: fonts.bold,
+                      fontSize: 14,
+                      lineHeight: 25,
+                      color: '#263238',
+                    }}
+                  >
+                    Already have an account ?{' '}
+                    <Text
+                      onPress={() => navigation.navigate('Login')}
+                      style={{
+                        fontFamily: fonts.bold,
+                        // marginLeft: 20,
+                        fontSize: 14,
+                        color: colors.primaryColor,
+                      }}
+                    >
+                      {' '}
+                      Login
+                    </Text>
+                  </Text>
+                </View>
                 <Text
                   style={{
                     textAlign: 'center',
-                    fontSize: 16,
+                    fontSize: 14,
                     fontFamily: fonts.regular,
                     marginTop: 30,
                   }}

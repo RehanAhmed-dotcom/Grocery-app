@@ -13,6 +13,7 @@ import React, { useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { colors, fonts, images } from './constant';
 // import Header from './components/Header';
+import Fontisto from 'react-native-vector-icons/AntDesign';
 import Cycle from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
@@ -34,12 +35,12 @@ export default function Welcome() {
       >
         <StatusBar backgroundColor={'#09a13c'} barStyle={'light-content'} />
 
-        <View style={{ marginTop: 30 }}>
+        <View style={{ marginTop: 50 }}>
           <Text
             style={{
               color: 'white',
-              fontSize: 24,
-              fontFamily: fonts.bold,
+              fontSize: 50,
+              fontFamily: fonts.medium,
               textAlign: 'center',
             }}
           >
@@ -73,8 +74,8 @@ export default function Welcome() {
             <Text
               style={{
                 color: 'green',
-                fontSize: 18,
-                fontFamily: fonts.bold,
+                fontSize: 29,
+                fontFamily: fonts.medium,
                 marginTop: 20,
                 textAlign: 'center',
               }}
@@ -125,12 +126,12 @@ export default function Welcome() {
                     color: 'black',
                   }}
                 >
-                  Create an account as a user
+                  Create Via Phone Number
                 </Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate('CreateAccountRider')}
+              onPress={() => navigation.navigate('EnterPassword')}
               style={{
                 borderRadius: 10,
                 // overflow: 'hidden',
@@ -160,11 +161,11 @@ export default function Welcome() {
                   height: '100%',
                 }}
               >
-                <Cycle
-                  name="bicycle-sharp"
-                  size={35}
-                  color="black"
+                <Fontisto
+                  name="google"
                   style={{ marginRight: 10 }}
+                  size={20}
+                  color={'black'}
                 />
                 <Text
                   style={{
@@ -174,7 +175,7 @@ export default function Welcome() {
                     color: 'black',
                   }}
                 >
-                  Create an account as a rider
+                  Create via Google Account
                 </Text>
               </View>
             </TouchableOpacity>
@@ -191,8 +192,8 @@ export default function Welcome() {
             <Text
               style={{
                 marginLeft: 20,
-                fontFamily: fonts.regular,
-                fontSize: 20,
+                fontFamily: fonts.bold,
+                fontSize: 17,
                 lineHeight: 25,
                 color: 'black',
               }}
@@ -200,8 +201,14 @@ export default function Welcome() {
               Already have an account ?{' '}
               <Text
                 onPress={() => navigation.navigate('Login')}
-                style={{ fontFamily: fonts.medium, color: 'white' }}
+                style={{
+                  fontFamily: fonts.bold,
+                  // marginLeft: 20,
+                  fontSize: 17,
+                  color: 'white',
+                }}
               >
+                {' '}
                 Login
               </Text>
             </Text>

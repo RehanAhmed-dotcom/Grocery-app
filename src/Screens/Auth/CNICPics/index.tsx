@@ -1,5 +1,6 @@
 import {
   Alert,
+  Image,
   ImageBackground,
   StatusBar,
   StyleSheet,
@@ -8,8 +9,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useRef, useState } from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 // import Header from './components/Header';
+import ImagePicker from 'react-native-image-crop-picker';
+import Plus from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { fonts, colors } from './constant';
@@ -19,44 +22,33 @@ import { colors, fonts, images } from '../../../component/Constant';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { RootStackParamList } from '../../../navigation/types';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
-export default function ConfirmCode() {
+export default function CNICPics() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const { bottom } = useSafeAreaInsets();
-
-  const [otp, setOtp] = useState(['', '', '', '']);
-  const inputs = useRef([]);
-
-  const handleChange = (text, index) => {
-    if (/^\d$/.test(text)) {
-      const newOtp = [...otp];
-      newOtp[index] = text;
-      setOtp(newOtp);
-
-      if (index < 3) {
-        inputs.current[index + 1].focus();
-      }
-    } else if (text === '') {
-      const newOtp = [...otp];
-      newOtp[index] = '';
-      setOtp(newOtp);
-    }
-  };
-
-  const handleKeyPress = (e, index) => {
-    if (e.nativeEvent.key === 'Backspace' && otp[index] === '' && index > 0) {
-      inputs.current[index - 1].focus();
-    }
-  };
+  const [front, setFront] = useState('');
+  const [back, setBack] = useState('');
 
   const handleSubmit = () => {
-    const code = otp.join('');
-    if (code.length < 4) {
-      Alert.alert('Error', 'Please enter complete 4-digit OTP');
-    } else {
-      navigation.navigate('CNICDetails');
-    }
+    navigation.navigate('UtilityBills');
   };
-
+  type ImagePickProps = {
+    Type?: 'Front' | 'Back'; // optional, only these two allowed
+  };
+  // const passwordInputRef = useRef(null);
+  const ImagePick: React.FC<ImagePickProps> = ({ Type = 'Front' }) => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      if (Type == 'Front') {
+        setFront(image.path);
+      } else {
+        setBack(image.path);
+      }
+      console.log(image);
+    });
+  };
   return (
     <View style={{ flex: 1, marginBottom: bottom }}>
       <ImageBackground
@@ -77,33 +69,72 @@ export default function ConfirmCode() {
           style={{
             marginHorizontal: 17,
             marginTop: '20%',
-            alignItems: 'center',
+            // alignItems: 'center',
           }}
         >
-          <Text style={styles.heading}>Verify your number</Text>
-          <Text style={styles.subHeading}>
-            Enter the 4 digit OTP sent to your registered mobile number
+          <Text style={styles.heading}>Add Picture of CNIC</Text>
+          <Text
+            style={{
+              marginTop: 30,
+              alignSelf: 'center',
+              fontSize: 18,
+              fontFamily: fonts.bold,
+              color: 'white',
+            }}
+          >
+            Add Front Picture
           </Text>
-          <Text style={styles.subHeading1}>
-            Enter the 4 digit OTP sent to your registered mobile number
+          <TouchableOpacity
+            onPress={() => {
+              ImagePick({ Type: 'Front' });
+            }}
+            style={{
+              height: 125,
+              alignSelf: 'center',
+              marginTop: 30,
+              width: 200,
+            }}
+          >
+            <Image
+              resizeMode="cover"
+              style={{ height: '100%', width: '100%' }}
+              source={
+                front
+                  ? { uri: front }
+                  : require('../.././../assets/FrontCNIC.png')
+              }
+            />
+          </TouchableOpacity>
+          <Text
+            style={{
+              marginTop: 30,
+              alignSelf: 'center',
+              fontSize: 18,
+              fontFamily: fonts.bold,
+              color: 'white',
+            }}
+          >
+            Add Back Picture
           </Text>
-        </View>
-
-        <View style={styles.otpContainer}>
-          {otp.map((digit, index) => (
-            <View style={styles.inputcontainer} key={index}>
-              <TextInput
-                ref={ref => (inputs.current[index] = ref)}
-                style={styles.input}
-                keyboardType="number-pad"
-                maxLength={1}
-                value={digit}
-                onChangeText={text => handleChange(text, index)}
-                onKeyPress={e => handleKeyPress(e, index)}
-                autoFocus={index === 0}
-              />
-            </View>
-          ))}
+          <TouchableOpacity
+            onPress={() => {
+              ImagePick({ Type: 'Back' });
+            }}
+            style={{
+              height: 125,
+              alignSelf: 'center',
+              marginTop: 30,
+              width: 200,
+            }}
+          >
+            <Image
+              resizeMode="cover"
+              style={{ height: '100%', width: '100%' }}
+              source={
+                back ? { uri: back } : require('../.././../assets/BackCNIC.png')
+              }
+            />
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity onPress={handleSubmit} style={styles.buttonWrapper}>
@@ -124,7 +155,7 @@ export default function ConfirmCode() {
 
 const styles = StyleSheet.create({
   heading: {
-    fontSize: 34,
+    fontSize: 31,
     fontFamily: fonts.bold,
     color: 'white',
     textAlign: 'center',
@@ -153,21 +184,25 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   inputcontainer: {
-    width: 50,
+    width: '90%',
     height: 50,
-    borderWidth: 1,
-    borderRadius: 30,
-    backgroundColor: 'green',
 
+    // borderWidth: 1,
+    borderRadius: 12,
     borderColor: '#ddd',
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    marginTop: 30,
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+    paddingHorizontal: 15,
   },
   input: {
     fontFamily: fonts.regular,
-    color: 'white',
-    fontSize: 20,
-    textAlign: 'center',
+    color: 'black',
+    fontSize: 14,
+    // textAlign: 'center',
     width: '100%',
     height: '100%',
   },
@@ -178,13 +213,15 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     backgroundColor: 'white',
     height: 60,
+    width: '80%',
+    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
     marginHorizontal: 15,
-    marginTop: heightPercentageToDP(15),
+    marginTop: heightPercentageToDP(10),
   },
   gradient: {
     paddingVertical: 14,

@@ -69,7 +69,7 @@ export default function VerifyNumber() {
         >
           <Text
             style={{
-              fontSize: 30,
+              fontSize: 34,
               fontFamily: fonts.bold,
               color: 'white',
               textAlign: 'center',
@@ -79,7 +79,7 @@ export default function VerifyNumber() {
           </Text>
           <Text
             style={{
-              fontSize: 15,
+              fontSize: 19,
               fontFamily: fonts.regular,
               color: 'white',
               textAlign: 'center',
@@ -146,7 +146,7 @@ export default function VerifyNumber() {
         > */}
           <Text
             style={{
-              fontSize: 20,
+              fontSize: 23,
               fontFamily: fonts.medium,
               color: colors.primaryColor,
             }}

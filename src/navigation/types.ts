@@ -6,8 +6,15 @@ export type RootTabParamList = {
   Profile: undefined;
 };
 export type RootStackParamList = {
+  Starting: undefined;
   Welcome: undefined;
+  WelcomeScreen: undefined;
+  EnterPassword: undefined;
+  UtilityBills: undefined;
+  Licence: undefined;
   CreateAccount: undefined;
+  CNICDetails: undefined;
+  CNICPics: undefined;
   Login: undefined;
   Forgot: undefined;
   VerifyNumber: undefined;

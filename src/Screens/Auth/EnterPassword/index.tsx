@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useRef, useState } from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 // import Header from './components/Header';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -19,7 +19,7 @@ import { colors, fonts, images } from '../../../component/Constant';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { RootStackParamList } from '../../../navigation/types';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
-export default function ConfirmCode() {
+export default function EnterPassword() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const { bottom } = useSafeAreaInsets();
 
@@ -47,16 +47,21 @@ export default function ConfirmCode() {
       inputs.current[index - 1].focus();
     }
   };
-
+  const passwordInputRef = useRef(null);
   const handleSubmit = () => {
-    const code = otp.join('');
-    if (code.length < 4) {
-      Alert.alert('Error', 'Please enter complete 4-digit OTP');
-    } else {
-      navigation.navigate('CNICDetails');
-    }
+    navigation.navigate('ConfirmCode');
   };
-
+  // const passwordInputRef = useRef(null);
+  const scrollViewRef = useRef(null);
+  const scrollToInput = (inputRef: RefObject<TextInput>) => {
+    inputRef.current.measureLayout(
+      scrollViewRef.current,
+      (x: number, y: number) => {
+        scrollViewRef.current.scrollTo({ y: y - 50, animated: true });
+      },
+      (error: unknown) => console.log('Error measuring layout:', error),
+    );
+  };
   return (
     <View style={{ flex: 1, marginBottom: bottom }}>
       <ImageBackground
@@ -77,33 +82,42 @@ export default function ConfirmCode() {
           style={{
             marginHorizontal: 17,
             marginTop: '20%',
-            alignItems: 'center',
+            // alignItems: 'center',
           }}
         >
-          <Text style={styles.heading}>Verify your number</Text>
-          <Text style={styles.subHeading}>
-            Enter the 4 digit OTP sent to your registered mobile number
-          </Text>
-          <Text style={styles.subHeading1}>
-            Enter the 4 digit OTP sent to your registered mobile number
-          </Text>
-        </View>
+          <Text style={styles.heading}>Enter your password</Text>
+          <Text
+            style={{
+              fontSize: 14,
 
-        <View style={styles.otpContainer}>
-          {otp.map((digit, index) => (
-            <View style={styles.inputcontainer} key={index}>
-              <TextInput
-                ref={ref => (inputs.current[index] = ref)}
-                style={styles.input}
-                keyboardType="number-pad"
-                maxLength={1}
-                value={digit}
-                onChangeText={text => handleChange(text, index)}
-                onKeyPress={e => handleKeyPress(e, index)}
-                autoFocus={index === 0}
-              />
-            </View>
-          ))}
+              fontFamily: fonts.semibold,
+              marginTop: 40,
+              marginLeft: 15,
+              color: 'white',
+            }}
+          >
+            Passwrord
+          </Text>
+          <View style={styles.inputcontainer}>
+            {/* <Feather name="lock" size={22} color={colors.grey} /> */}
+            <TextInput
+              ref={passwordInputRef}
+              style={styles.input}
+              placeholderTextColor={'grey'}
+              placeholder="........."
+              secureTextEntry={true}
+              onFocus={() => scrollToInput(passwordInputRef)}
+            />
+            {/* <TouchableOpacity
+                             onPress={() => setShowPassword(!showPassword)}
+                           >
+                             <Feather
+                               name={!showPassword ? 'eye-off' : 'eye'}
+                               size={20}
+                               color={colors.grey}
+                             />
+                           </TouchableOpacity> */}
+          </View>
         </View>
 
         <TouchableOpacity onPress={handleSubmit} style={styles.buttonWrapper}>
@@ -124,7 +138,7 @@ export default function ConfirmCode() {
 
 const styles = StyleSheet.create({
   heading: {
-    fontSize: 34,
+    fontSize: 31,
     fontFamily: fonts.bold,
     color: 'white',
     textAlign: 'center',
@@ -153,21 +167,24 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   inputcontainer: {
-    width: 50,
+    width: '90%',
     height: 50,
-    borderWidth: 1,
-    borderRadius: 30,
-    backgroundColor: 'green',
-
+    // borderWidth: 1,
+    borderRadius: 12,
     borderColor: '#ddd',
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    marginTop: 5,
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+    paddingHorizontal: 15,
   },
   input: {
     fontFamily: fonts.regular,
-    color: 'white',
-    fontSize: 20,
-    textAlign: 'center',
+    color: 'black',
+    fontSize: 14,
+    // textAlign: 'center',
     width: '100%',
     height: '100%',
   },
@@ -178,6 +195,8 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     backgroundColor: 'white',
     height: 60,
+    width: '80%',
+    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     shadowOffset: { width: 0, height: 2 },
