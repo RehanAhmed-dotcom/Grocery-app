@@ -13,7 +13,7 @@ import {
   View,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import Menu from 'react-native-vector-icons/Entypo';
 import { colors, fonts, images, products } from '../../../component/Constant';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -24,11 +24,15 @@ import type { StackNavigationProp } from '@react-navigation/stack';
 import type { RootStackParamList } from '../../../navigation/types';
 import Product from '../../../component/Product';
 import CategoriesHome from '../../../component/CategoriesHome';
+import ProductHome from '../../../component/ProductHome';
+import MenuModal from '../../../component/MenuModal';
 // import Categories from '../Categories';
 const { width, height } = Dimensions.get('window');
-const bannerHeight = height * 0.3;
+const bannerHeight = 163;
+
 const Home = () => {
   const scrollRef = useRef(null);
+  const [showModal, setShoModal] = useState(false);
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [activeIndex, setActiveIndex] = useState(0);
   const images1 = [
@@ -36,7 +40,9 @@ const Home = () => {
     require('../../../assets/slide2.png'),
     require('../../../assets/slide3.png'),
   ];
-
+  const hideModal = () => {
+    setShoModal(false);
+  };
   const { top } = useSafeAreaInsets();
   const categories = [
     {
@@ -83,11 +89,11 @@ const Home = () => {
     const slide = Math.round(event.nativeEvent.contentOffset.x / width);
     setActiveIndex(slide);
   };
-
+  console.log('show', showModal);
   return (
     <View style={[styles.container, { marginTop: top }]}>
       <StatusBar
-        barStyle="light-content"
+        barStyle="dark-content"
         backgroundColor={colors.primaryColor}
       />
       <View
@@ -95,14 +101,21 @@ const Home = () => {
           backgroundColor: colors.primaryColor,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
+          flexDirection: 'row',
+          alignItems: 'center',
           paddingVertical: 10,
           paddingHorizontal: 15,
         }}
       >
-        <Text style={{ color: 'black', fontSize: 12 }}>Your address</Text>
-        <Text style={{ color: 'black', fontSize: 14, marginTop: 5 }}>
-          House no 16 street no 12 pakistan town rawalpindi
-        </Text>
+        <TouchableOpacity onPress={() => setShoModal(true)}>
+          <Menu name="menu" size={20} color={'white'} />
+        </TouchableOpacity>
+        <View style={{ marginLeft: 10 }}>
+          <Text style={{ color: 'white', fontSize: 12 }}>Your location</Text>
+          <Text style={{ color: 'white', fontSize: 14, marginTop: 5 }}>
+            g8/4 hanna road islamabad
+          </Text>
+        </View>
       </View>
 
       <ScrollView
@@ -110,7 +123,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.inputcontainer}>
-          <Feather name="search" size={22} color={colors.grey} />
+          {/* <Feather name="search" size={22} color={colors.grey} /> */}
           <TextInput
             style={styles.input}
             placeholderTextColor={'#ccc'}
@@ -120,6 +133,17 @@ const Home = () => {
           <SimpleLineIcons name="equalizer" size={20} color={colors.grey} />
         </TouchableOpacity> */}
         </View>
+        <Text
+          style={{
+            marginVertical: 10,
+            marginLeft: 15,
+            fontSize: 22,
+            fontFamily: fonts.bold,
+            color: 'black',
+          }}
+        >
+          Hello Tayyab
+        </Text>
         {/* Image Slider */}
         <View style={styles.sliderWrapper}>
           <ScrollView
@@ -157,29 +181,42 @@ const Home = () => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginTop: 10,
+            marginTop: 50,
             marginHorizontal: 15,
           }}
         >
           <Text style={{ fontSize: 18, fontFamily: fonts.bold }}>
             Special Promotions
           </Text>
-          {/* <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
-            <FontAwesome name="angle-right" size={24} color={colors.grey} />
-          </TouchableOpacity> */}
+          <TouchableOpacity
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+            onPress={() => navigation.navigate('Categories')}
+          >
+            <Text
+              style={{
+                color: colors.primaryColor,
+                marginRight: 5,
+                fontFamily: fonts.regular,
+              }}
+            >
+              See more
+            </Text>
+            <FontAwesome
+              name="angle-right"
+              size={24}
+              color={colors.primaryColor}
+            />
+          </TouchableOpacity>
         </View>
-        <View>
+        <View style={{ marginTop: 10 }}>
           <FlatList
-            // showsHorizontalScrollIndicator={false}
-            data={categories}
-            numColumns={3}
+            showsHorizontalScrollIndicator={false}
+            data={products}
+            // numColumns={3}
+            horizontal
             keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => (
-              <CategoriesHome
-                name={item.name}
-                image={item.image}
-                navigation={navigation}
-              />
+              <ProductHome item={item} navigation={navigation} />
             )}
           />
         </View>
@@ -253,13 +290,32 @@ const Home = () => {
           <Text style={{ fontSize: 18, fontFamily: fonts.bold }}>
             Super Sasta
           </Text>
-          {/* <FontAwesome name="angle-right" size={24} color={colors.grey} /> */}
+          <TouchableOpacity
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+            onPress={() => navigation.navigate('Categories')}
+          >
+            <Text
+              style={{
+                color: colors.primaryColor,
+                marginRight: 5,
+                fontFamily: fonts.regular,
+              }}
+            >
+              See more
+            </Text>
+            <FontAwesome
+              name="angle-right"
+              size={24}
+              color={colors.primaryColor}
+            />
+          </TouchableOpacity>
         </View>
-        <View style={{ marginBottom: 30 }}>
+        <View style={{ marginBottom: 20 }}>
           <FlatList
-            // showsHorizontalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
             data={categories}
-            numColumns={3}
+            // numColumns={3}
+            horizontal
             keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => (
               <CategoriesHome
@@ -270,7 +326,51 @@ const Home = () => {
             )}
           />
         </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 0,
+            marginHorizontal: 15,
+          }}
+        >
+          <Text style={{ fontSize: 18, fontFamily: fonts.bold }}>
+            Most Popular
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+            onPress={() => navigation.navigate('Categories')}
+          >
+            <Text
+              style={{
+                color: colors.primaryColor,
+                marginRight: 5,
+                fontFamily: fonts.regular,
+              }}
+            >
+              See more
+            </Text>
+            <FontAwesome
+              name="angle-right"
+              size={24}
+              color={colors.primaryColor}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ marginTop: 10 }}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            data={products}
+            // numColumns={3}
+            horizontal
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => (
+              <ProductHome item={item} navigation={navigation} />
+            )}
+          />
+        </View>
       </ScrollView>
+      {MenuModal({ show: showModal, hideModal })}
     </View>
   );
 };
@@ -288,11 +388,12 @@ const styles = StyleSheet.create({
   inputcontainer: {
     width: '90%',
     height: 50,
-    borderWidth: 1,
+    // borderWidth: 1,
     marginHorizontal: 15,
     borderRadius: 40,
     borderColor: '#ddd',
     alignSelf: 'center',
+    backgroundColor: '#E8ECEF',
     marginTop: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -303,7 +404,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     height: bannerHeight,
     position: 'relative',
-    marginHorizontal: 15,
+    // marginHorizontal: 15,
   },
   image: {
     width: width,

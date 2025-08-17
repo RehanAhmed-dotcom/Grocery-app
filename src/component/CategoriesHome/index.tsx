@@ -19,39 +19,45 @@ const CategoriesHome: React.FC<CategoriesProps> = ({
         })
       }
       style={{
-        backgroundColor: 'white',
+        // backgroundColor: '#dbefe3',
         alignItems: 'center',
-        marginLeft: 15,
+        marginLeft: 5,
         marginTop: 10,
-        width: '28%',
+        // width: '28%',
 
-        paddingHorizontal: 10,
+        paddingHorizontal: 5,
         borderRadius: 5,
         justifyContent: 'center',
       }}
     >
-      <Text
-        numberOfLines={1}
-        style={{ color: 'black', fontFamily: fonts.medium, marginVertical: 10 }}
-      >
-        {name}
-      </Text>
       <View
         style={{
-          height: 85,
+          height: 53,
           alignItems: 'center',
+          backgroundColor: '#dbefe3',
           justifyContent: 'center',
-          borderRadius: 100,
+          borderRadius: 10,
           // backgroundColor: 'red',
-          width: 85,
+          width: 53,
         }}
       >
         <Image
           source={image}
           resizeMode="contain"
-          style={{ height: 80, borderRadius: 100, width: 80 }}
+          style={{ height: 35, width: 44 }}
         />
       </View>
+      <Text
+        numberOfLines={1}
+        style={{
+          color: '#333333',
+          fontSize: 12,
+          fontFamily: fonts.regular,
+          marginTop: 5,
+        }}
+      >
+        {name}
+      </Text>
     </TouchableOpacity>
   );
 };
