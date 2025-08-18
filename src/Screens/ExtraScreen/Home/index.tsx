@@ -370,7 +370,7 @@ const Home = () => {
           />
         </View>
       </ScrollView>
-      {MenuModal({ show: showModal, hideModal })}
+      <MenuModal show={showModal} hideModal={hideModal} />
     </View>
   );
 };
